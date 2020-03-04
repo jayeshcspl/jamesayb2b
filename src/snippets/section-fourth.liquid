@@ -1,0 +1,53 @@
+{% if shop.metafields.fp_halfslide_product.product_model_image2 != blank %}
+{% assign product_model_image_desktop = shop.metafields.fp_halfslide_product.product_model_image2 | file_url %}
+{% else %}
+{% assign product_model_image_desktop = "como_kent_stannard_frontpage.jpg" | file_url %}
+{% endif %}
+{% if shop.metafields.fp_halfslide_product.product_model_image_mobile2 %}
+{% assign product_model_image_mobile = shop.metafields.fp_halfslide_product.product_model_image_mobile2 | file_img_url: '800x' %}
+{% else %}
+{% assign product_model_image_mobile = product_model_image_desktop %}
+{% endif %} 
+
+{% if shop.metafields.fp_halfslide_product.productname_variantid2 != blank %}
+{% assign productname_variantid2 = shop.metafields.fp_halfslide_product.productname_variantid2 %}
+{% else %}
+{% assign productname_variantid2 = "como=29988722049088" %}
+{% endif %}
+
+{% assign result1 = productname_variantid2 | split: "=" %}
+{% assign product_name1 = result1[0] | strip %}
+{% assign product_id1 = result1[1] | strip | plus: 0 %}
+
+{% for variant in all_products[product_name1].variants %}
+  {% if variant != blank %}
+    {% if variant.id == product_id1 %} 
+      {% assign json_product1 = variant %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if shop.metafields.fp_halfslide_product.product_model_title2 != blank %}
+{% assign product_model_title2 = shop.metafields.fp_halfslide_product.product_model_title2 %}
+{% else %}
+{% assign product_model_title2 = "COMO" %}
+{% endif %}
+
+{% if shop.metafields.fp_halfslide_product.product_model_description2 != blank %}
+{% assign product_model_description2 = shop.metafields.fp_halfslide_product.product_model_description2 %}
+{% else %}
+{% assign product_model_description2 = "High premium bio<br />sunglasses" %}
+{% endif %}
+
+<section class="vertical-scrolling {{section_number}}"  data-section="one-image" style="background-image: url('{{product_model_image_desktop}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;" data-desktop-url="{{product_model_image_desktop}}" data-mobile-url="{{product_model_image_mobile}}">
+    <div class="container-fluid h-100">
+      <div class="row h-100">
+        <div class="col-lg-12 my-auto h-100 section1_imgl">
+          <a href="{{json_product1.url}}" class="testbg">
+            <h2 class="overlay_txt is-animated mb-4">{{product_model_description2}}</h2>
+            <h5 class="story text-center is-animated mb-0">{{product_model_title2}}</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>

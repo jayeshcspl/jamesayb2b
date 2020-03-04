@@ -1,0 +1,99 @@
+{% if template != 'cart' %}
+  <div class="footer_lifetime">
+    <div class="js-conveyor-example">
+      <ul>
+        <li>Free shipping worldwide</li>
+        <li class="d-none d-lg-inline-block">1 order = 1 kg of plastic waste removed</li>
+        <li>1 order = 1 planted tree</li>
+      </ul>
+    </div>
+  </div>
+  <div id="signUpModal" class="col-xs-12 col-lg-5 mx-auto mt-10 mb-4">
+    <h5 class="modal-title text-center my-4 pb-0 pt-3">Join our newsletter</h5>
+    <p class="text-center my-4 mx-auto newsletter_text">We wish to give you inspiration on how to live a more fulfilling life. So, sign up to our newsletter to follow what goes on in our universe.</p>
+
+    <form class="omnisend-subscribe-form myclass" name="omnisend-subscribe-form">
+      <!-- {% form 'customer' %} -->
+          {{ form.errors | default_errors }}
+          {% if form.posted_successfully? %}
+            <p class="form--success">{{ 'general.newsletter_form.confirmation' | t }}</p>
+          {% else %}
+            <div class="row form-row input-group1 password__input-group no-gutters">
+              <div class="col-6 text-center divider">
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <input type="text"
+                name="contact[name]"
+                id="Name"
+                class="input-group__field newsletter__input omnisend-subscribe-input-first-name form-control"
+                value="{% if customer %}{{ customer.name }}{% endif %}"
+                placeholder="Your name" required>
+                <div class="invalid-feedback"></div> 
+              </div>
+              <div class="col-6 text-center">
+                <input type="email"
+                name="contact[email]"
+                id="Email"
+                class="input-group__field newsletter__input omnisend-subscribe-input-email form-control"
+                value="{% if customer %}{{ customer.email }}{% endif %}"
+                placeholder="Your email"
+                autocorrect="off"
+                autocapitalize="off" required>
+                <div class="invalid-feedback"></div>
+              </div>        
+            </div>
+            <div class="row">
+              <span class="col-12 input-group__btn text-center">
+                <button type="submit" class="btn-signup newsletter__submit" name="commit" id="Subscribe">
+                  <span class="btn-signup newsletter__submit-text--large">Sign up</span>
+                </button>
+              </span>
+            </div>
+          {% endif %}
+        <!-- {% endform %} -->
+      </form>
+  </div>  
+  <div class="container-fluid footer mt-10 text-center text-lg-left">
+    <div class="row px-5">
+      <div class="col-lg-6 links">
+        <div class="row">
+          <div class="col-lg-6">
+            <ul class="mb-0">
+              <li><a href="/pages/about">About</a></li>
+              <li><a href="/blogs/stories">Stories</a></li>
+              <li><a href="/pages/contact">Contact us</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <ul class="mb-0">
+              <li><a href="/pages/shipping-return">Shipping & returns</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 social-media mt-5 mt-lg-0">
+        <ul class="mb-0">
+          <li><a href="https://www.instagram.com/jamesay_official" target="_blank">Instagram</a></li>
+          <li><a href="https://www.facebook.com/jamesayofficial/" target="_blank">Facebook</a></li>
+          <li><a href="https://www.youtube.com/channel/UCGzO6K0bWZlRD1trP3N64Tg" target="_blank">Youtube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row px-0 px-lg-5 terms-privacy my-5">
+      <div class="col d-lg-flex justify-content-between">
+        <p class="text-center text-lg-left mb-0"><a href="/pages/terms-conditions">Terms and conditions</a></p>
+        <p class="text-center text-lg-right mb-0"><a href="/pages/cookies-privacy-policy">Cookies - privacy policy</a></p>
+      </div>
+    </div>
+  </div>
+	<a id="return-to-top">
+    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="337.085px" height="337.086px" viewbox="0 0 337.085 337.086" style="enable-background: new 0 0 337.085 337.086;" xml:space="preserve">
+      <g>
+        <path d="M168.54,0C75.619,0,0.012,75.609,0.012,168.543c0,92.93,75.606,168.543,168.528,168.543
+      c92.933,0,168.534-75.613,168.534-168.543C337.074,75.609,261.473,0,168.54,0z M271.405,224.327
+      c-2.407,2.402-5.561,3.615-8.713,3.615c-3.158,0-6.311-1.213-8.719-3.615L168.54,138.9l-85.424,85.427
+      c-4.816,4.815-12.631,4.815-17.447,0c-4.819-4.815-4.819-12.622,0-17.438l94.152-94.141c4.822-4.815,12.613-4.815,17.426,0
+      l94.152,94.141C276.221,211.705,276.221,219.512,271.405,224.327z"></path>
+      </g>
+    </svg>
+  </a>  
+{% endif %}

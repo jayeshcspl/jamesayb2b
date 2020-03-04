@@ -1,0 +1,4 @@
+{% if shop.metafields.viabill_pricetag.data_currency %} 
+<div class="viabill-pricetag" data-view="basket" data-price="{{ cart.total_price | money }}" {% if shop.metafields.viabill_pricetag.data_language %}data-language="{{ shop.metafields.viabill_pricetag.data_language }}"{% endif %} data-currency="{{ shop.metafields.viabill_pricetag.data_currency }}"></div>
+<script>(function(){var o=document.createElement('script');o.type='text/javascript';o.async=true;o.src='https://pricetag.viabill.com/script/{{ shop.metafields.viabill_pricetag.shopuri }}';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(o,s);})();</script>
+{% endif %}

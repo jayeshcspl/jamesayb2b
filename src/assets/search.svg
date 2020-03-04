@@ -1,0 +1,14 @@
+<svg width="22px" height="23px" viewBox="0 0 22 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="search">
+          <g id="Website-desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="search" transform="translate(-1530.000000, -57.000000)" fill-rule="nonzero" stroke="{% if template != 'index' %} #000000 {% else %} #FFFFFF {% endif %}">
+                  <g id="Group-6" transform="translate(85.000000, 54.000000)">
+                      <g id="Group-4" transform="translate(1439.000000, 0.000000)">
+                          <g id="Group-4-Copy-2" transform="translate(15.202796, 15.202796) rotate(-315.000000) translate(-15.202796, -15.202796) translate(6.702796, 2.202796)">
+                            <circle id="Oval" stroke-width="2" cx="8.50609665" cy="8.96446609" r="8"></circle>
+                            <rect id="Rectangle" x="9.06675683" y="17.3388348" width="1" height="8"></rect>
+                          </g>
+                      </g>
+                  </g>
+              </g>
+          </g>
+        </svg>

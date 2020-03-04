@@ -1,0 +1,97 @@
+.stories_selected_left {
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  background-position: center center;
+}
+.stories_selected_section {
+  min-height: calc(100vh - 0px);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: left;
+  overflow: auto;
+  /*margin: 0 55px;*/
+}
+.stories_selected_section h5 {
+	color: #FFF;
+	font-family: 'MonumentRegular';
+	font-size: 12px;
+	letter-spacing: 3.69px;
+	line-height: 14px;
+}
+.stories_selected_section h1 {
+	color: #000000;
+	font-family: 'MonumentSemiMono' !important;
+	font-size: 26px;
+	letter-spacing: 1.08px;
+	line-height: 36px;
+	text-align: center;
+}
+.stories_selected h2 {
+	color: #FFF !important;
+	font-family: 'MonumentSemiMono' !important;
+	font-size: 36px !important;
+	letter-spacing: 4.31px !important;
+	line-height: normal !important;
+	text-align: center !important;
+	margin-top: 10px;
+}
+.stories_selected_section p {
+	color: #000000;
+	font-family: 'MonumentRegular';
+	font-size: 14px;
+	letter-spacing: 0.2px;
+	line-height: 24px;
+}
+
+.stories_selected_left h2 {
+	color: #FFF !important;
+	font-family: 'MonumentSemiMono' !important;
+	font-size: 36px !important;
+	letter-spacing: 4.31px !important;
+	line-height: normal !important;
+	margin-top: 10px;
+}
+
+.community_txt h2 {
+	color: #000000;
+	font-family: 'MonumentSemiMono';
+	font-size: 26px;
+	letter-spacing: 1.08px;
+	line-height: 36px;
+	text-align: center;
+}
+.community_txt p {
+	color: #000000;
+	font-family: 'MonumentRegular';
+	font-size: 14px;
+	letter-spacing: 0.2px;
+	line-height: 24px;
+}
+.adventure_txt h2 {
+	color: #000000;
+	font-family: 'MonumentSemiMono';
+	font-size: 26px;
+	letter-spacing: 1.08px;
+	line-height: 36px;
+	text-align: center;
+}
+.adventure_txt p {
+	color: #000000;
+	font-family: 'MonumentRegular';
+	font-size: 14px;
+	letter-spacing: 0.2px;
+	line-height: 24px;
+	text-align: center;
+}

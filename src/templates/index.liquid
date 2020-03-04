@@ -1,0 +1,53 @@
+<div id="fullpage" class="homepage">
+  {% if shop.metafields.fp_slide_reorder.template_number != blank %}
+  {% assign template_number = shop.metafields.fp_slide_reorder.template_number %}
+  {% else %}
+  {% assign template_number = 1 %}
+  {% endif %}
+  {% if template_number == 1 %}
+    {% include 'section-first', section_number:"section-first" %}
+    {% include 'section-second', section_number:"section-second" %}
+    {% include 'section-third', section_number:"section-third" %}
+    {% include 'section-fourth', section_number:"section-fourth" %}    
+  {% elsif template_number == 2 %}
+    {% include 'section-fourth', section_number:"section-fourth" %}
+    {% include 'section-first', section_number:"section-first" %}
+    {% include 'section-third', section_number:"section-second" %}
+    {% include 'section-second', section_number:"section-third" %}
+  {% elsif template_number == 3 %}
+    {% include 'section-second', section_number:"section-first" %}
+    {% include 'section-fourth', section_number:"section-fourth" %}
+    {% include 'section-first', section_number:"section-second" %}
+    {% include 'section-third', section_number:"section-third" %}
+  {% elsif template_number == 4 %}
+    {% include 'section-second', section_number:"section-first" %}
+    {% include 'section-third', section_number:"section-second" %}
+    {% include 'section-fourth', section_number:"section-fourth" %}
+    {% include 'section-first', section_number:"section-third" %}
+  {% elsif template_number == 5 %}
+    {% include 'section-fourth', section_number:"section-fourth" %}
+    {% include 'section-third', section_number:"section-first" %}
+    {% include 'section-first', section_number:"section-second" %}
+    {% include 'section-second', section_number:"section-third" %}
+  {% elsif template_number == 6 %}
+    {% include 'section-third', section_number:"section-third" %}
+    {% include 'section-second', section_number:"section-second" %}
+    {% include 'section-first', section_number:"section-first" %}
+    {% include 'section-fourth', section_number:"section-fourth" %}
+  {% endif %}
+</div>
+{% if shop.metafields.fp_fullslide_video.vimeo_video_id != blank %}
+{% assign vimeo_video_id = shop.metafields.fp_fullslide_video.vimeo_video_id %}
+{% else %}
+{% assign vimeo_video_id = 253989945 %}
+{% endif %}
+<script type="text/javascript">
+  var options = {
+      id: {{vimeo_video_id}},
+      autoplay: true,
+      loop: true,
+      responsive: true,
+      background: true,
+  };
+  var chasing = new Vimeo.Player('vimeo-video', options);
+</script>

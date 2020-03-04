@@ -1,0 +1,26 @@
+{% if shop.metafields.fp_fullslide_video.video_title != blank %}
+{% assign video_title = shop.metafields.fp_fullslide_video.video_title %}
+{% else %}
+{% assign video_title = "James Ay is not only a brand, really, it's a philosophy." %}
+{% endif %}
+{% if shop.metafields.fp_fullslide_video.video_link != blank %}
+{% assign video_link = shop.metafields.fp_fullslide_video.video_link %}
+{% else %}
+{% assign video_link = "/pages/about" %}
+{% endif %}
+<section class="vertical-scrolling custom_overlay {{section_number}} video_slide" data-section="video">
+  <!-- <div class="video-youtube">
+    <iframe width="100%" src="https://www.youtube.com/embed/AynjAQSCwiU?autoplay=1&autohide=1&rel=0&controls=0&loop=1&showinfo=0&wmode=transparent" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div> -->
+  <div class="vimeo-wrapper">
+    <div id="vimeo-video"></div>
+  </div>
+  <a href="{{video_link}}">
+    <div class="overlay">
+        <div class="text">
+          <h2 class="overlay_txt mx-auto mb-4 is-animated">{{video_title}}</h2>
+          <h5 class="story text-center mb-0 is-animated">EXPLORE</h5>
+        </div>
+    </div>
+  </a>
+</section>

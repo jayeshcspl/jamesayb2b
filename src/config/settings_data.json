@@ -1,0 +1,157 @@
+{
+  "current": {
+    "color_accent": "#161d25",
+    "color_body_text": "#161d25",
+    "color_main_bg": "#ffffff",
+    "font_heading": "arvo_n4",
+    "font_body": "arimo_n4",
+    "share_image": "shopify:\/\/shop_images\/kent_stannard_james_ay_03_efcece14-413b-4e01-81cf-79088e90b374.jpg",
+    "social_sharing_blog": true,
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "social_twitter_link": "",
+    "social_facebook_link": "",
+    "social_pinterest_link": "",
+    "social_instagram_link": "",
+    "social_snapchat_link": "",
+    "social_tumblr_link": "",
+    "social_youtube_link": "",
+    "social_vimeo_link": "",
+    "cart_notes_enable": false,
+    "favicon": "shopify:\/\/shop_images\/ay_favicon.gif",
+    "checkout_header_image": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/logo_mark_black.png",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "large",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "Open Sans",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#888888",
+    "checkout_button_color": "#000000",
+    "checkout_error_color": "#e32c2b",
+    "sections": {
+      "collection-list": {
+        "type": "collection-list",
+        "blocks": {
+          "collection-list-0": {
+            "type": "collection",
+            "settings": {
+              "collection": ""
+            }
+          },
+          "collection-list-1": {
+            "type": "collection",
+            "settings": {
+              "collection": ""
+            }
+          },
+          "collection-list-2": {
+            "type": "collection",
+            "settings": {
+              "collection": ""
+            }
+          }
+        },
+        "block_order": [
+          "collection-list-0",
+          "collection-list-1",
+          "collection-list-2"
+        ],
+        "settings": {
+          "title": "Collection list"
+        }
+      },
+      "featured-collection": {
+        "type": "featured-collection",
+        "settings": {
+          "title": "Featured collection",
+          "collection": ""
+        }
+      },
+      "featured-product": {
+        "type": "featured-product",
+        "settings": {
+          "title": "Featured Product",
+          "product": "",
+          "show_product_description": false,
+          "description": "<p>This is where you can put an alternate product description<\/p>",
+          "show_share_buttons": false
+        }
+      },
+      "announcement-banner": {
+        "type": "announcement-banner",
+        "settings": {
+          "link-text": "Button",
+          "link": "shopify:\/\/collections",
+          "text": "Use this section to make an announcement on the home page. It's a great place for social media updates!"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": [
+      "featured-product",
+      "announcement-banner",
+      "featured-collection"
+    ]
+  },
+  "presets": {
+    "Default": {
+      "sections": {
+        "collection-list": {
+          "type": "collection-list",
+          "blocks": {
+            "collection-list-0": {
+              "type": "collection",
+              "settings": {}
+            },
+            "collection-list-1": {
+              "type": "collection",
+              "settings": {}
+            },
+            "collection-list-2": {
+              "type": "collection",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "collection-list-0",
+            "collection-list-1",
+            "collection-list-2"
+          ],
+          "settings": {}
+        },
+        "featured-collection": {
+          "type": "featured-collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "featured-product": {
+          "type": "featured-product",
+          "settings": {}
+        },
+        "announcement-banner": {
+          "type": "announcement-banner",
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "featured-product",
+        "announcement-banner",
+        "featured-collection"
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{% if shop.metafields.fp_fullslide_story.story_url != blank %}
+{% assign story_url = shop.metafields.fp_fullslide_story.story_url %}
+{% else %}
+{% assign story_url = "stories/following-dreams" %}
+{% endif %}
+
+{% assign article = articles[story_url] %}
+{% assign desktop_img = article.image | img_url: "master" %}
+{% if article.metafields.cf_story.mobile_img %}
+{% assign mobile_img = article.metafields.cf_story.mobile_img | file_img_url: '800x' %}
+{% else %}
+{% assign mobile_img = desktop_img %}
+{% endif %}
+
+<section class="vertical-scrolling home_section3 {{section_number}}" data-section="one-image" style="background-image: url('{{desktop_img}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+  <div class="container-fluid h-100">
+    <div class="row h-100">
+      <div class="col-lg-12 my-auto h-100 section2_imgl">
+        <a href="{{ article.url }}" class="testbg">
+          <h5 class="story text-center is-animated mb-4">STORY</h5>
+          <h2 class="overlay_txt is-animated mb-4">{{ article.title }}</h2>
+          <h5 class="story text-center is-animated mb-0">EXPLORE</h5>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

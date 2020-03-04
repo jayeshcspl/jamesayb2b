@@ -1,0 +1,234 @@
+<script>
+function toggleScrollAndOverlay() {
+  /*if(!$('body').hasClass('template-index') && !$('body').hasClass('template-blog')) {
+    if($('.header-top').hasClass('open-menu') || $('.header-top').hasClass('shop-menu') || $('.header-top').hasClass('open-searchbar')) {
+      $('body').css({"overflow":"hidden"});
+    }else{
+      $('body').css({"overflow":"auto"});
+    }
+  }*/
+  if($('.header-top').hasClass('open-menu') || $('.header-top').hasClass('shop-menu') || $('.header-top').hasClass('open-searchbar')) {
+    $("#vl-overlay").css("opacity", "0.7");
+    $("#vl-overlay").fadeIn();
+  }else{
+    $("#vl-overlay").css("opacity", "0");
+    $("#vl-overlay").fadeOut();
+  }    
+}
+window.onload = function() {
+  /**
+   * Module to ajaxify all add to cart forms on the page.
+   *
+   * Copyright (c) 2015 Caroline Schnapp (11heavens.com)
+   * Dual licensed under the MIT and GPL licenses:
+   * http://www.opensource.org/licenses/mit-license.php
+   * http://www.gnu.org/licenses/gpl.html
+   *
+   */
+  Shopify.AjaxifyCart = (function($) {
+
+    // Some configuration options.
+    // I have separated what you will never need to change from what
+    // you might change.
+
+    var _config = {
+
+      // What you might want to change
+      addToCartBtnLabel:             'Buy',
+      addedToCartBtnLabel:           'Thank you!',
+      addingToCartBtnLabel:          'Adding...',
+      soldOutBtnLabel:               'Sold Out',
+      howLongTillBtnReturnsToNormal: 800, // in milliseconds.
+      cartCountSelector:             '#CartCount',
+      cartTotalSelector:             '#cart-price',
+      // 'aboveForm' for top of add to cart form, 
+      // 'belowForm' for below the add to cart form, and 
+      // 'nextButton' for next to add to cart button.
+      feedbackPosition:              'nextButton',
+
+      // What you will never need to change
+      addToCartBtnSelector:          '.ajax_add_to_Cart_Btn',
+      addToCartFormSelector:         'form[action="/cart/add"]',
+      shopifyAjaxAddURL:             '/cart/add.js',
+      shopifyAjaxCartURL:            '/cart.js'
+    };
+
+    // We need some feedback when adding an item to the cart.
+    // Here it is.  
+    var _showFeedback = function(success, html, $addToCartForm) {
+      $('.ajaxified-cart-feedback').remove();
+      var feedback = '<p class="ajaxified-cart-feedback ' + success + '">' + html + '</p>';
+      switch (_config.feedbackPosition) {
+        case 'aboveForm':
+          $addToCartForm.before(feedback);
+          break;
+        case 'belowForm':
+          $addToCartForm.after(feedback);
+          break;
+        case 'nextButton':
+        default:
+          $addToCartForm.find(_config.addToCartBtnSelector).before(feedback);
+          break;   
+      }
+      // If you use animate.css
+      // $('.ajaxified-cart-feedback').addClass('animated bounceInDown');
+      $('.ajaxified-cart-feedback').slideDown();
+    };
+    var _setText = function($button, label) {
+      if ($button.children().length) {
+        $button.children().each(function() {
+          if ($.trim($(this).text()) !== '') {
+            $(this).text(label);
+          }
+        });
+      }
+      else {
+        $button.val(label).text(label);
+      }
+    };
+    var _init = function() {   
+      $(document).ready(function() { 
+        $(_config.addToCartFormSelector).submit(function(e) {
+          e.preventDefault();
+          var $addToCartForm = $(this);
+          var $addToCartBtn = $addToCartForm.find(_config.addToCartBtnSelector);
+          _setText($addToCartBtn, _config.addingToCartBtnLabel);
+          $addToCartBtn.addClass('disabled').prop('disabled', true);
+          // Add to cart.
+          $.ajax({
+            url: _config.shopifyAjaxAddURL,
+            dataType: 'json',
+            type: 'post',
+            data: $addToCartForm.serialize(),
+            success: function(itemData) {
+              // Re-enable add to cart button.
+              $addToCartBtn.addClass('inverted');
+              _setText($addToCartBtn, _config.addedToCartBtnLabel);
+              _showFeedback('success','<i class="fa fa-check"></i> Added to cart! <a href="/cart">View cart</a> or <a href="/collections/all">continue shopping</a>.',$addToCartForm);
+              window.setTimeout(function(){
+                $addToCartBtn.prop('disabled', false).removeClass('disabled').removeClass('inverted');
+                _setText($addToCartBtn,_config.addToCartBtnLabel);
+              }, _config.howLongTillBtnReturnsToNormal);
+              // Update cart count and show cart link.
+              $.getJSON(_config.shopifyAjaxCartURL, function(cart) {
+                if (_config.cartCountSelector && $(_config.cartCountSelector).length) {
+                  var value = $(_config.cartCountSelector).html() || '0';
+                  $(_config.cartCountSelector).html(value.replace(/[0-9]+/,cart.item_count)).removeClass('hidden-count');
+                }
+                if (_config.cartTotalSelector && $(_config.cartTotalSelector).length) {
+                  if (typeof Currency !== 'undefined' && typeof Currency.moneyFormats !== 'undefined') {
+                    var newCurrency = '';
+                    if ($('[name="currencies"]').length) {
+                      newCurrency = $('[name="currencies"]').val();
+                    }
+                    else if ($('#currencies span.selected').length) {
+                      newCurrency = $('#currencies span.selected').attr('data-currency');
+                    }
+                    if (newCurrency) {
+                      $(_config.cartTotalSelector).html('<span class=money>' + Shopify.formatMoney(Currency.convert(cart.total_price, "{{ shop.currency }}", newCurrency), Currency.money_format[newCurrency]) + '</span>');
+                    } 
+                    else {
+                      $(_config.cartTotalSelector).html(Shopify.formatMoney(cart.total_price, "{{ shop.money_format | remove: "'" | remove: '"' }}"));
+                    }
+                  }
+                  else {
+                    $(_config.cartTotalSelector).html(Shopify.formatMoney(cart.total_price, "{{ shop.money_format | remove: "'" | remove: '"' }}"));
+                  }
+                };
+
+                setTimeout(function(){ 
+                  var shipping_calculate_at_checkout = "Shipping & taxes calculated at checkout";
+                  $('.hc-mini-table').remove();
+                  $('.hc-append form').remove();
+
+                  $('.hc-append').append('<form action="/cart" method="post" novalidate class="d-flex align-items-end flex-column h-100"><div class="w-100 hc-mini-table"><div class="cart_top">');   
+                  $(cart.items).each(function(index, item) {
+                  index++;
+                  var price = Shopify.formatMoney(item.price,"{{ shop.money_with_currency_format }}");
+                  var line_price = Shopify.formatMoney(item.line_price,"{{ shop.money_with_currency_format }}");
+                  console.log("price = "+price+" line_price"+ line_price );
+                  $('.cart_top').append('<div class="row no-gutters mb-3"><div class="col-3 media"><a href="'+item.url+'"><img src="'+item.image+'" width="90px" ></a></div><div class="col-9 pl-4"><div class="media-body"><h4><a href="'+item.url+'">'+item.sku+' - '+item.product_title+'</a></h4>'+(item.variant_title ? "<h4>"+item.variant_title+"</h4>" : "")+'</div><ul class="justify-content-sm-between mt-4"><li>'+price+' x '+item.quantity+' = '+line_price+'</li><li class="text-right float-right"><a href="/cart/change?line='+index+'&amp;quantity=0">Remove</a></li></ul></div></div>');
+                  });
+
+                  var total_price = Shopify.formatMoney(cart.total_price,"{{ shop.money_with_currency_format }}");
+                  var total_price_excl_vat = Shopify.formatMoney(cart.total_price*0.8,"{{ shop.money_with_currency_format }}");
+                  $('.hc-mini-table').append('</div>'); // close div of cart top
+                  $('.hc-mini-table').append('<div class="cart_bottom"><div class="row"><div class="col-md-12"><ul class="d-flex align-items-center pt-5 pb-4" style="border-bottom: 1px solid #D1D1D1;"><li>Total incl. VAT:</li><li class="text-right euro"><p id="subtotal" class="cart-money">'+total_price+'</p></li></ul></div></div><div class="row vat-shipping"><div class="col-6"><h4>Total excl. VAT:</h4></div><div class="col-6 text-right"><h4><p id="subtotal" class="cart-money">'+total_price_excl_vat+'</p></h4></div></div><div class="hide row vat-shipping"><div class="col-8"><h4>'+shipping_calculate_at_checkout+'</h4></div><div class="col-4 text-right"><h4></h4></div></div><div class="row"><div class="col-12"><a href="/cart" class="d-block mt-4 w-100 continue-shopping black_btn" title="Continue shopping">Buy now</a><a href="/collections/all" class="d-block mt-4 w-100 continue-shopping" title="Continue shopping">Continue shopping</a></div></div></div>');
+
+                  $('.hc-append').append('</div></form>');
+
+                  var hc_append_height_old = $('.hc-append').height()
+                  var hc_append_height = $('nav.shop_menu').height() - $('.cart_bottom').height();
+                  if(hc_append_height_old > hc_append_height) {
+                    $('.hc-append').height(hc_append_height);
+                    $('.hc-append').css({'overflow':'auto', 'padding-right':'10px'});
+                    console.log('hc-append = ' + $('.hc-append').height());
+                  }
+                  $('.header-top').toggleClass('shop-menu');
+                  $('.header-top').removeClass('open-menu');
+                  $('.header-top').removeClass('open-searchbar');
+                  toggleScrollAndOverlay();
+                  $(window).scrollTop(0);
+                }, 100);                
+              });        
+            }, 
+            error: function(XMLHttpRequest) {
+              var response = eval('(' + XMLHttpRequest.responseText + ')');
+              response = response.description;
+              if (response.slice(0,4) === 'All ') {
+                _showFeedback('error', response.replace('All 1 ', 'All '), $addToCartForm);
+                $addToCartBtn.prop('disabled', false);
+                _setText($addToCartBtn, _config.soldOutBtnLabel);
+                $addToCartBtn.prop('disabled',true);
+              }
+              else {
+                _showFeedback('error', '<i class="fa fa-warning"></i> ' + response, $addToCartForm);
+                $addToCartBtn.prop('disabled', false).removeClass('disabled');
+                _setText($addToCartBtn, _config.addToCartBtnLabel);
+              }
+            }
+          });   
+          return false;    
+        });
+      });
+    };
+    return {
+      init: function(params) {
+          // Configuration
+          params = params || {};
+          // Merging with defaults.
+          $.extend(_config, params);
+          // Action
+          $(function() {
+            _init();
+          });
+      },    
+      getConfig: function() {
+        return _config;
+      }
+    }  
+  })(jQuery);
+
+  Shopify.AjaxifyCart.init();
+}
+</script>
+<style>
+.ajaxified-cart-feedback {
+  display: block;
+  line-height: 36px;
+  font-size: 90%;
+  vertical-align: middle;
+}
+.ajaxified-cart-feedback.success { 
+  color: #3D9970;
+}
+.ajaxified-cart-feedback.error { 
+  color: #FF4136; 
+} 
+.ajaxified-cart-feedback a {
+  border-bottom: 1px solid;
+}
+.ajaxified-cart-feedback {
+  display: none !important;
+}
+</style>

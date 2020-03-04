@@ -1,0 +1,437 @@
+@media only screen and (min-width: 1200px) {
+	.cart_page.content_area .table td:nth-child(2) {
+		width: 410px;
+	}
+}
+@media only screen and (min-width: 1024px) {
+	.not_want_end img {
+		margin-top: 15rem;
+	}
+	.reason_why_rakel p {
+		margin-top: 10rem;
+	}	
+	.video_slide h2{
+		max-width: 700px;
+	}
+}	
+@media only screen and (min-width: 992px) {
+	.cart_page.content_area .table td:first-child {
+		width: 180px;
+	}
+	.cart_page.content_area .table td:nth-child(4) {
+		width: 80px;
+	}
+	.product_remove_link {
+		padding-top: 50px;
+		display: block;
+	}
+	.contentWidth .index-1 {
+		margin-top: 20rem !important;
+	}
+	.header-top .l-right {
+		right: 0px;
+		-webkit-transition: 0.1s;
+		-moz-transition: 0.1s;
+		-o-transition: 0.1s;
+		transition: 0.1s;
+	}
+	.header-top.stuck .l-right {
+		right: 180px;
+		-webkit-transition: 0.1s;
+		-moz-transition: 0.1s;
+		-o-transition: 0.1s;
+		transition: 0.1s;
+	}
+	.stuck .l-right.count0 {
+		right: 0px;
+		-webkit-transition: 0.1s;
+		-moz-transition: 0.1s;
+		-o-transition: 0.1s;
+		transition: 0.1s;
+	}
+	a.total_price_wrapper {
+		position: absolute;
+		top: 0; 
+		/* left: 0;  */
+		bottom: 0; 
+		right: 0;	
+		background: #000;
+		color: #fff !important;
+		width: 180px;
+		margin: auto;
+		text-align: center;
+		-webkit-transition: 0.1s;
+		-moz-transition: 0.1s;
+		-o-transition: 0.1s;
+		transition: 0.1s;
+		z-index: 100;	
+	}
+	.vcenter {
+		position: relative;
+		top:50%;
+		transform: translateY(-50%);
+		font-size: 12px;
+		font-weight: 700;
+		font-family: 'MonumentSemiMono';
+	}
+	.total_price_wrapper {
+		-webkit-transition: 0.1s;
+		-moz-transition: 0.1s;
+		-o-transition: 0.1s;
+		transition: 0.1s;		
+	}	
+	.header-top .total_price_wrapper {
+		display: none !important;
+	}
+	.header-top.stuck .total_price_wrapper {
+		display: block !important;
+	}
+	#cart-price {
+		display: inline-block;
+	}
+	.adventure_txt p {
+		margin-top: 25px;
+	}
+	.search-bar form {
+    padding: 20px 20px 50px;
+	}
+}
+@media only screen and (max-width: 991px) {
+	.not_want_end img {
+		margin-top: 0rem;
+	}
+	.reason_why_rakel p {
+		margin-top: 5rem;
+	}	
+	.kent_cool {
+		margin: 8rem 0 0 0;
+	}
+	.rakel_story_05 {
+		margin: 5rem 0 0 0;
+	}
+	.it_fuels {
+		margin-top: 0rem;
+	}
+	.catching_sharks {
+		margin-top: 5rem;
+	}
+	.did_not_want {
+		margin: 5rem 0;
+	}
+	.im_happy {
+		margin: 5rem 0;
+	}
+	.kent_melbourne {
+		margin: 0;
+	}
+	.great_white_shark {
+		margin: 5rem 0 0 0;
+	}
+	.city_life p {
+		margin: 5rem 0 0 0 !important;
+	}
+	.city_people {
+		margin-top: 0rem;
+	}
+	.contentWidth .products {
+		margin-top: 50px !important;
+	}
+  	.template-article .contentWidth .products:first-child {
+		margin-top: 0px !important;
+	}
+	.header-top {
+		top: 0;
+		width: 100%;
+	}
+	.search-bar {
+		width: 100%;
+	}
+	.open-searchbar~nav.search-bar {
+		top: 0;
+	}
+	nav.main_menu {
+		width: 100%;
+	}	
+	.open-menu~nav.main_menu {
+		top: 0;
+	}	
+	.main_menu .row.h-100 {
+		margin: 0;
+	}
+	ul.social-media {
+		left: 12px;
+		width: 100%;
+	}
+	ul.social-media li {
+		display: inline-block;
+		padding-right: 10px;
+	}
+	.left-align {
+		position: relative;
+		left: 15px;
+	}
+	.l-left {
+		left: 0;
+	}
+	.l-right {
+		right: 0;
+	}
+	.section1_imgr {
+		background-color: transparent;
+		min-height: auto;
+	}
+	.mt-20, .mt-30 {
+		margin-top: 10rem !important;
+	}
+	.mb-20 {
+		margin-bottom: 5rem !important;
+	}
+	.ml-6 {
+		margin-left: 0;
+		/* margin-top: 5rem; */
+	}
+	.contentWidth .index-1 {
+		margin-top: 10rem !important;
+	}
+	.mt-50 {
+		margin-top: 10rem !important;
+	}
+	.products .mt-10, 
+	.products .mt-20, 
+	.products .mt-30, 
+	.products .mt-40, 
+	.products .mt-50 {
+		margin-top: 0rem !important;
+	}
+	.contact ul {
+		margin-left: 0;
+	}
+	.contact .mt-10 {
+		margin-top: 5rem !important;
+	}
+	#signUpModal {
+		width: 100% !important;
+		margin-top: 1rem;
+	}
+	nav.shop_menu {
+		height:100%;
+		top:0;
+		bottom: 0;
+		width: calc(100%);
+		padding: 100px 20px 30px;
+	}	
+	.shop-menu ~ nav.shop_menu {
+		right: 0;
+	}
+	.shop_menu ul {
+		flex-direction: row;
+	}
+	.shop-menu .l-left svg #Prelauch-01 {
+		fill: #000000;
+	}
+	#james-ay #fp-nav.right {
+		right: 17px;
+		display: none;
+	}
+	.social-media{
+		text-align: left;
+	}
+	.social-media ul{
+		text-align: center;
+	}
+	.community_txt h2 {
+		font-size: 20px;
+		line-height: 28px;
+		margin: 20px 0;
+	}
+	.vertical-scrolling.mt-10,.vertical-scrolling.mt-20 {
+		margin-top: 5rem !important;
+	}
+	.vertical-scrolling.mb-20 {
+		margin-bottom: 5rem !important;
+	}
+	.stories_selected_section h1, .adventure_txt h2 {
+		font-size: 20px !important;
+		line-height: 28px;
+	}
+	.section_story h2,
+	.main_stories h2 {
+		font-size: 30px !important;
+	}
+	.stories_selected h2,.stories_selected_left h2 {
+		font-size: 30px !important;
+	}
+	.mt-30.about{
+		margin-top: 15rem;
+	}
+	.about h3 {
+		font-size: 21px;		
+	}
+	.about p {
+		font-size: 14px;
+	}
+	#pic {
+    height: 200px;
+	}
+	/*nav li {
+		height: 35px;
+	}*/
+	.mw-310 {
+		max-width: 100% !important;
+	}
+	.mw-420 {
+		max-width: 100% !important;
+	}
+	.mw-550 {
+		max-width: 100% !important;
+	}
+	.shop_selected_section h5 {
+		font-size: 12px !important;
+	}
+	.shop_selected_section h2 {
+		font-size: 26px !important;
+		line-height: normal !important;
+	}
+	.l-left svg .james {
+		display: none;
+	}
+	.l-left svg .ays {
+		display: block;
+	}
+	.search-bar input {
+		text-align: center;
+	}
+	.shop1_imgr {
+		min-height: inherit;
+		margin: 90px 0 50px;
+	}
+	#signUpModal .btn-signup {
+		width: 170px;
+	}
+	.contentWidth {
+		width: calc(100% - 5px);
+	}
+	#contact .contact.pt-20 {
+		padding-top: 100px;
+	}
+	#contact .contact ul.contact_left_menu {
+		text-align: center;
+		padding-bottom: 50px;
+	}
+	[class*="js-conveyor-"] ul li {
+		width: calc(100%/2 - 10px);
+	}
+	.product-container .product-order {
+		order: 2;
+	}
+	.product-container .shop1_imgr {
+		order: 1;
+	}
+	.shop1_imgr h1, .col.money {
+		text-align: center;
+	}
+	.swaporder1 {
+		order: 2;
+	}
+	.swaporder2 {
+		order: 1;
+	}
+	.swatch_area {
+		border-top: 0px solid transparent !important;
+		border-bottom: 0px solid transparent !important;
+		text-align: center;
+	}
+	.swatch_area .swatch {
+		display: inline-block;
+	}
+	.shop1_imgr p {
+		display: none;
+	}
+	.template-index h2.overlay_txt {
+		font-size: 22px;
+	}
+	.shop1_imgr h1 {
+		font-size: 24px;
+	}
+	.main_menu{
+		height: 100%;
+	}
+	.fix-bottom{
+		position: fixed;
+		width:100%;
+		bottom:0;
+		z-index: 1030;
+	}
+	nav li{
+		height:auto;
+	}
+	.main_description {
+	 	margin-top: 5rem;
+	 	margin-bottom: 5rem;
+	 }
+	.product_details {
+		margin-top: 0rem;
+		margin-bottom: 5rem;
+	}
+	.rakel_jamesay_img {
+		margin-top: 0rem;
+	}
+	.title-2 {
+		margin-bottom: 5rem;
+	}
+	.scroll_down {
+		bottom: 70px;
+	}
+	.section2_imgl {
+		background-color: transparent;
+	}
+	.stories_selected_section.city_life_wrapper {
+		min-height: inherit;
+		display: inherit;
+	}	
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+	.mt-30,.mt-40,.mt-50 {
+		margin-top: 10rem !important;
+	}
+	#signUpModal p {
+		font-size: 12px;
+	}
+	.cart_page.content_area .table td:first-child {
+		width: 180px;
+	}
+}
+@media only screen and (max-width: 575px) {
+	.newsletter_text {
+		max-width: 245px;
+	}
+	.template-cart  .table td img{
+		max-width: 65px;
+	}
+	.cart_page.content_area .table tr td {
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+	.template-cart	.cart_page button.continue-shopping {
+		width: 100%;
+	}
+	.template-index h2.overlay_txt {
+		font-size: 20px;
+	}
+	.video_slide h2{
+		max-width: 300px;
+	}
+	.video_slide h2 br{
+		display: none;
+	}
+}
+@media only screen and (max-width: 400px) {
+	[class*="js-conveyor-"] ul li {
+		width: auto;
+	}
+}
+@media only screen and (max-width: 320px) {
+	[class*="js-conveyor-"] ul li {
+		padding: 0 7px;
+	}
+}

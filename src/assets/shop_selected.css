@@ -1,0 +1,195 @@
+.shop1_imgr {
+  min-height: calc(100vh - 0px);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  overflow: auto;
+}
+.shop1_imgr h1 {
+  color: #000;
+  font-size: 21px;
+  letter-spacing: 1.08px;
+  line-height: 36px;
+}
+
+.shop1_imgr h5 {
+  color: #000;
+  font-size: 18px;
+  letter-spacing: 1.22px;
+  line-height: 22px;
+}
+.shop1_imgr ul {
+  border-top: 1px solid #ccc;
+  padding: 30px 0 50px 0;
+  border-bottom: 1px solid #ccc;
+  margin: 40px 0;
+}
+.shop1_imgr ul li {
+  position: relative;
+  width: 100%;
+  display: inline-flex;
+}
+.shop1_imgr ul li p {
+  color: #000;
+  font-size: 14px;
+  letter-spacing: 1.08px;
+  line-height: 24px;
+  position: absolute;
+  top: 15px;
+}
+.arrow-shop {
+  position: absolute;
+  top: 20%;
+  left: 70%;
+  z-index: 1;
+  display: none;
+}
+.shop1_imgr .oval-blk-first {
+  height: 20px;
+  width: 20px;
+  background-color: #2E3331;
+  display: inline-block;
+  border-radius: 100px;
+  background-color: #333;
+  background-image: linear-gradient(#ccc, #000);
+}
+.selected {
+  border: 1px solid #333;
+  padding: 10px;
+  display: block;
+  background-color: #fff;
+}
+.shop1_imgr .oval-blk {
+  height: 20px;
+  width: 20px;
+  background-color: #2E3331;
+  display: inline-block;
+  border-radius: 100px;
+}
+.shop1_imgr .oval-crm {
+  height: 20px;
+  width: 20px;
+  background-color: #E8CEBC;
+  display: inline-block;
+  border-radius: 100px; 
+}
+.shop1_imgr .oval-gry {
+  height: 20px;
+  width: 20px;
+  background-color: #EAEAEA;
+  display: inline-block;
+  border-radius: 100px;
+}
+.shop1_imgr p {
+  color: #000;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  line-height: 20px;
+  cursor: pointer;
+  font-family: 'MonumentRegular';
+}
+.shop1_imgr p.plus_sign::before {
+  content: '+';
+  position: relative;
+  top: 2px;
+  left: 0;
+  color: #000;
+  font-size: 19px;
+  font-weight: 600;
+  font-family: 'MonumentRegular';
+}
+.shop1_imgr p.product_desciption  {
+  color: #000;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  line-height: 20px;
+  cursor: pointer;
+  font-family: 'MonumentRegular';
+  display: block;
+}
+.shop1_imgr .btn-signup {  
+  font-family: 'MonumentSemiMono';
+  font-size: 12px;
+  letter-spacing: 0.92px;
+  line-height: 24px;
+  text-align: center;
+  color: #fff;
+  height: 50px;
+  background-color: #000;
+  border: none;
+  cursor: pointer;
+  max-width: 200px;
+  width: 100%;
+}
+.shop1_imgr .btn-signup a {  
+  color: #fff;
+}
+.shop_selected {
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  background-position: center center;
+}
+.shop_selected_section {
+  min-height: calc(100vh - 0px);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: left;
+  overflow: auto;
+}
+.shop_selected_section h5 {
+  color: #FFF;
+  font-family: 'MonumentRegular';
+  font-size: 12px;
+  letter-spacing: 3.69px;
+  line-height: 14px;
+}
+.shop_selected h2 {
+  color: #FFF !important;
+  font-family: 'MonumentSemiMono' !important;
+  font-size: 36px !important;
+  letter-spacing: 4.31px !important;
+  line-height: 46px !important;
+  text-align: left !important;
+  margin-top: 10px;
+}
+.shop_sml_title {
+  color: #000;
+  font-size: 18px;
+  letter-spacing: 0.75px;
+  line-height: 36px;
+}
+.shop_title_desc {
+  color: #000;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  line-height: 24px;
+}
+.followthesun {
+  color: #000;
+  font-size: 21px;
+  letter-spacing: 1.08px;
+  line-height: 36px;
+  text-align: center;
+}

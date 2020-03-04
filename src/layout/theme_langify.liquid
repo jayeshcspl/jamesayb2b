@@ -1,0 +1,260 @@
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}
+{% comment %}ly_static_code_begin{% endcomment %}{% capture ly_content %}{% comment %}ly_static_code_end{% endcomment %}<!doctype html>
+<html class="no-js supports-no-cookies" lang="{{ shop.locale }}"{% comment %}ly_dir_replace_for_[]_begin{% endcomment %}{% assign language = cart.attributes["language"] %}{% if language == nil %}{% assign language = shop.metafields["languages"]["default"] %}{% endif %}{% if shop.metafields.languages_dir[language] == 'rtl' %} dir="rtl" {% endif %}{% comment %}ly_dir_replace_end{% endcomment %}>
+<head>
+  {% include '3wh-gtm' %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_accent }}">
+  <meta http-equiv="Expires" content="30" />
+  <link rel="canonical" href="{{ canonical_url }}">
+  {%- if settings.favicon != blank -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {%- endif -%}
+
+  {%- capture seo_title -%}
+    {{ langify_title }}
+    {%- if current_tags -%}
+      {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {% comment %}ly_i18n_replace_for_[ 'general.meta.tags' | t: tags: meta_tags ]_begin{% endcomment %}{% capture ly_template %}{{ 'general.meta.tags' | t: tags: meta_tags }}{% endcapture %}{% include 'ly-static-string' with '16412768' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = meta_tags  %}{% assign ly_template = ly_template | replace: '[[tags]]', replacement %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}
+    {%- endif -%}
+    {%- if current_page != 1 -%}
+      &ndash; {% comment %}ly_i18n_replace_for_[ 'general.meta.page' | t: page: current_page ]_begin{% endcomment %}{% capture ly_template %}{{ 'general.meta.page' | t: page: current_page }}{% endcapture %}{% include 'ly-static-string' with '16412770' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = current_page  %}{% assign ly_template = ly_template | replace: '[[page]]', replacement %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}
+    {%- endif -%}
+    {%- assign escaped_page_title = langify_title | escape -%}
+    {%- unless escaped_page_title contains langify_shop_name -%}
+      &ndash; {{ langify_shop_name }}
+    {%- endunless -%}
+  {%- endcapture -%}
+  <title>{{ seo_title | strip }}</title>
+
+  {%- if langify_description -%}
+    <meta name="description" content="{{ langify_description | escape }}">
+  {%- endif -%}
+
+  {% include 'social-meta-tags' %}
+  {% include 'style-tags', layout: 'theme' %}
+  {% include 'css-variables' %}
+  {% include 'script-tags', layout: 'theme' %}
+  {{ content_for_header }}
+  <link defer rel="stylesheet" type="text/css" href="{% comment %}ly_asset_replace_for_[ 'fontawesome_v5.8.2_all.css' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'fontawesome_v5.8.2_all.css' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}">
+  {% if template == 'product' %}
+  <link defer rel="stylesheet" type="text/css" href="{% comment %}ly_asset_replace_for_[ 'jquery.fancybox.min.css' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'jquery.fancybox.min.css' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}">
+  {% endif %}
+  {% if template == 'index' or template == 'blog' %}
+  <link defer rel="stylesheet" type="text/css" href="{% comment %}ly_asset_replace_for_[ 'jquery.fullPage.css' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'jquery.fullPage.css' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}">
+  {% endif %}
+  <link defer rel="stylesheet" type="text/css" href="{% comment %}ly_asset_replace_for_[ 'animate.min.css' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'animate.min.css' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}">
+  <link defer rel="stylesheet" type="text/css" href="{% comment %}ly_asset_replace_for_[ 'aos.css' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'aos.css' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}">
+  <link defer rel="stylesheet" type="text/css" href="{% comment %}ly_asset_replace_for_[ 'style.scss' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'style.scss' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}">
+  <link defer rel="stylesheet" type="text/css" href="{% comment %}ly_asset_replace_for_[ 'responsive.css' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'responsive.css' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}">
+  <link defer rel="stylesheet" type="text/css" href="{% comment %}ly_asset_replace_for_[ 'select-css.css' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'select-css.css' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}">
+  <style>
+
+    @media screen and (min-width: 992px) {
+      body:after{
+        display:none;
+        content: {% if template == 'index' %} url({{ 'videobg_vimeo.jpg' | file_url }}) {% endif %}
+        url({{ '01.jpg' | file_url }})
+        url({{ '02.jpg' | file_url }})
+        url({{ '03.jpg' | file_url }})
+        url({{ '04.jpg' | file_url }});
+      }
+      #pic {
+        opacity: 1;
+        transition: opacity .25s ease-in-out;
+        -moz-transition: opacity .25s ease-in-out;
+        -webkit-transition: opacity .25s ease-in-out;
+      }
+      #pic.p1 {
+        background-image: url({{ '01.jpg' | file_url }});
+        background-size: cover;
+        background-position: center center;
+      }
+      #pic.p2 {
+        background-image: url({{ '02.jpg' | file_url }});
+        background-size: cover;
+        background-position: center center;
+      }
+      #pic.p3 {
+        background-image: url({{ '03.jpg' | file_url }});
+        background-size: cover;
+        background-position: center center;
+      }
+      #pic.p4 {
+        background-image: url({{ '04.jpg' | file_url }});
+        background-size: cover;
+        background-position: center center;
+      }
+    }
+    @media screen and (max-width: 991px) {
+      {% if template == 'index' %}
+      body:after{
+        display:none;
+        content: url({{ 'videobg_vimeo_mobile.jpg' | file_img_url: '800x' }});
+      }
+      {% endif %}
+    }    
+    a.product_link,
+    a.product_link:hover {
+      color: inherit;
+    }
+    .james, .ays {
+      transition: all 0.5s;
+    }
+    .ays {
+      display: none;
+    }
+    @media screen and (min-width: 992px) {
+      .vimeo-wrapper {
+        background-image: url({{ 'videobg_vimeo.jpg' | file_url }});
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+    @media screen and (max-width: 991px) {
+      .vimeo-wrapper {
+        background-image: url({{ 'videobg_vimeo_mobile.jpg' | file_img_url: '800x' }});
+      }
+    }
+  </style>
+  <script src="{% comment %}ly_asset_replace_for_[ 'jquery-3.4.1.min.js' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'jquery-3.4.1.min.js' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}"></script>
+  {% if template == 'product' %}
+  <script defer src="{% comment %}ly_asset_replace_for_[ 'jquery.fancybox.js' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'jquery.fancybox.js' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}"></script>
+  {% endif %}
+  {% if template == 'index' or template == 'blog' %}
+  <script defer src="{% comment %}ly_asset_replace_for_[ 'jquery.fullPage.min.js' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'jquery.fullPage.min.js' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}"></script>
+  {% endif %}
+  <script defer src="{% comment %}ly_asset_replace_for_[ 'highlight.min.js' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'highlight.min.js' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}"></script>
+  <script defer src="{% comment %}ly_asset_replace_for_[ 'aos.js' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'aos.js' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}"></script>
+  {% if template == 'index' %}
+  <script src="{% comment %}ly_asset_replace_for_[ 'player.js' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'player.js' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}"></script>
+  {% endif %}
+  <!-- {% comment %}ly_asset_replace_for_[ 'luxy.js' | asset_url | script_tag ]_begin{% endcomment %}{% assign ly_asset = 'luxy.js' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  | script_tag }}{% comment %}ly_asset_replace_end{% endcomment %} -->
+  <script defer src="{% comment %}ly_asset_replace_for_[ 'index.js' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'index.js' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}"></script>
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', '');
+    window.theme = {
+      strings: {
+        addToCart: {{ 'products.product.add_to_cart' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }}
+      },
+      moneyFormat: {{ shop.money_format | json }}
+    };
+    
+    {% if template.directory == 'customers' %}
+    theme.allCountryOptionTags = {{ all_country_option_tags | json }};
+    {% endif %}
+  </script>
+{% comment %}ly_dir_styles_begin{% endcomment %}{% assign language = cart.attributes["language"] %}{% if language == nil %}{% assign language = shop.metafields["languages"]["default"] %}{% endif %}{% if shop.metafields.languages_dir[language] == 'rtl' %}{% comment %}ly_asset_replace_for_[ 'ly-rtl.css' | asset_url | stylesheet_tag ]_begin{% endcomment %}{% assign ly_asset = 'ly-rtl.css' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  | stylesheet_tag }}{% comment %}ly_asset_replace_end{% endcomment %}{% endif %}{% comment %}ly_dir_styles_end{% endcomment %}
+<script src="https://jsconsole.com/js/remote.js?1499074a-f145-4491-ac78-1ef5f3a7cf5d"></script>
+</head>
+
+<body id="{{ langify_title | handle }}" class="template-{{ template.name | handle }}">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P63MCKP"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="loader">
+    <svg class="iconspin">
+      <use xlink:href="#icon-spinner">
+        <symbol id="icon-spinner" viewBox="0 0 16 16">
+          <path d="M15 9h-2c-0.553 0-1-0.447-1-1s0.447-1 1-1h2c0.553 0 1 0.447 1 1s-0.447 1-1 1zM12.242 5.172c-0.391 0.391-1.023 0.391-1.414 0s-0.391-1.023 0-1.414l1.414-1.414c0.391-0.391 1.023-0.391 1.414 0s0.391 1.023 0 1.414l-1.414 1.414zM8 16c-0.553 0-1-0.447-1-1v-2c0-0.553 0.447-1 1-1s1 0.447 1 1v2c0 0.553-0.447 1-1 1zM8 4c-0.553 0-1-0.447-1-1v-2c0-0.553 0.447-1 1-1s1 0.447 1 1v2c0 0.553-0.447 1-1 1zM3.758 13.656c-0.391 0.391-1.023 0.391-1.414 0s-0.391-1.023 0-1.414l1.414-1.414c0.391-0.391 1.023-0.391 1.414 0s0.391 1.023 0 1.414l-1.414 1.414zM3.758 5.172l-1.414-1.414c-0.391-0.391-0.391-1.023 0-1.414s1.023-0.391 1.414 0l1.414 1.414c0.391 0.391 0.391 1.023 0 1.414s-1.023 0.391-1.414 0zM4 8c0 0.553-0.447 1-1 1h-2c-0.553 0-1-0.447-1-1s0.447-1 1-1h2c0.553 0 1 0.447 1 1zM12.242 10.828l1.414 1.414c0.391 0.391 0.391 1.024 0 1.414s-1.023 0.391-1.414 0l-1.414-1.414c-0.391-0.391-0.391-1.023 0-1.414s1.023-0.391 1.414 0z"></path>
+          </symbol>  
+      </use>
+    </svg>
+  </div>
+  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{% comment %}ly_i18n_replace_for_[ 'general.accessibility.skip_to_content' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'general.accessibility.skip_to_content' | t }}{% endcapture %}{% include 'ly-static-string' with '16412771' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</a>
+
+  {% section 'header' %}
+  <div id="luxy">
+    <main role="main" id="MainContent">
+      {{ content_for_layout }}
+    </main>
+    {% section 'footer' %}
+  </div>
+  
+  <div id="vl-overlay" style="display: none;"></div>
+  {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+  {% include 'search-autocomplete' %}
+  {% include 'ajaxify-cart' %}
+  <script type="text/javascript">
+    jQuery(function() {
+      jQuery('.swatch :radio').change(function() {
+        var optionIndex = jQuery(this).closest('.swatch').attr('data-option-index');
+        var optionValue = jQuery(this).val();
+        jQuery(this)
+        .closest('form')
+        .find('.single-option-selector')
+        .eq(optionIndex)
+        .val(optionValue)
+        .trigger('change');
+      });
+
+      jQuery('.single-option-selector').change(function() {
+        var optionValue = jQuery(this).val();
+        jQuery(this).closest('form').find('.swatch').each(function( index ) {
+          jQuery(this).find(':radio').each(function( index ) {
+            if(jQuery(this).val() == optionValue ){
+              $(this).siblings(':radio').prop('checked', false);
+                $(this).prop('checked', true);     
+            }   
+          });
+        });
+      });
+
+      $('.shopify-currency-form select').on('change', function() {
+        $(this)
+          .parents('form')
+          .submit();
+      });
+
+      $('.search-bar form').on('keyup keypress', function(e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) { 
+          e.preventDefault();
+          return false;
+        }
+      });
+
+      $('.join_newsletter').click(function() {
+        setTimeout(function(){ $('a.soundest-form-without-image-open')[0].click()}, 100);
+      });
+      $( ".omnisend-subscribe-form" ).submit(function( event ) {
+        setTimeout(function(){ $('a.soundest-form-simple-open')[0].click()}, 100);
+        event.preventDefault();
+      });
+
+    });
+
+    // When the user scrolls the page, execute myFunction 
+    window.onscroll = function() {
+      if ($('#myBar').length) {
+        myFunction()
+      }
+    };
+    
+    function myFunction() {
+      var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrolled = (winScroll / height) * 100;
+      document.getElementById("myBar").style.width = scrolled + "%";
+    }
+
+    jQuery(window).on("load", function(){
+      $(".loader").fadeOut("slow");
+      setTimeout(function(){ $('a.soundest-form-simple-open').css({"display":"none"})}, 100);
+    });
+
+    /*if (window.innerWidth > 767){
+      luxy.init();
+      var customheight = $('#MainContent').height();
+      $(document).ready(function(){
+        $(".stickyOuterHeight").css("height", customheight - 250);
+      });
+    }*/
+  </script>
+{% comment %}ly_static_code_begin{% endcomment %}{% include 'ly-languages' %}{% comment %}ly_static_code_end{% endcomment %}</body>
+</html>{% comment %}ly_static_code_begin{% endcomment %}{% endcapture %}{% include 'ly-static' with ly_content %}{% comment %}ly_static_code_end{% endcomment %}

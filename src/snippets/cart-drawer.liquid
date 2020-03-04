@@ -1,0 +1,100 @@
+<div class="w-100 hc-append">
+{% if cart.item_count > 0 %}
+    <form action="/cart" method="post" novalidate class="d-flex align-items-end flex-column h-100">
+        <div class="w-100 hc-mini-table">
+            <div class="cart_top">
+                {% for item in cart.items %}
+                    <div class="row no-gutters mb-3">         
+                        <div class="col-3 media">
+                            {% if item.image != blank %}
+                            <a href="{{ item.url | within: collections.all }}">
+                                {{ item | img_url: 'master' | img_tag: item.title, "img_in_cartdrawer" }}
+                            </a>
+                            {% endif %}                        
+                            <!-- <img src="{{ 'products.jpg' | asset_url }}" class="mr-4" style="width:100px;"> -->
+                        </div>
+                        <div class="col-9 pl-4">
+                            <div class="media-body">
+                                <h4><a href="{{ item.url }}">{{ item.variant.sku }} - {{ item.product.title }}</a></h4>
+                                {% unless item.product.has_only_default_variant %}
+                                <h4>{{ item.variant.title }}</h4>
+                                {% endunless %}
+                            </div>
+                            <ul class="justify-content-sm-between mt-4">
+                            <li>
+                                {% if item.original_line_price != item.line_price %}
+                                    <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                                    {{ item.price | money }}
+                                    <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                                    <s>{{ item.original_price | money }}</s>
+                                {% else %}
+                                    {{ item.price | money }}
+                                {% endif %}
+                                x
+                                {{ item.quantity }}
+                                =
+                                {{ item.line_price | money }}
+                            </li>
+                            <li class="text-right float-right"><a href="/cart/change?line={{ forloop.index }}&quantity=0">
+                                {{ 'cart.general.remove' | t }}
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="cart_bottom">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="d-flex align-items-center pt-5 pb-4" style="border-bottom: 1px solid #D1D1D1;">
+                        <li>Total incl. VAT:</li>
+                        <li class="text-right euro">
+                            <p id="subtotal" class="cart-money">{{ cart.total_price | money }}</p>
+                            {% if cart.total_discounts > 0 %}
+                            <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
+                            {% endif %}
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row vat-shipping">
+                    <div class="col-6">
+                        <h4>Total excl. VAT:</h4>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h4><p id="subtotal" class="cart-money">{{ cart.total_price | times:0.8 | money }}</p>
+                            {% if cart.total_discounts > 0 %}
+                            <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
+                            {% endif %}</h4>
+                    </div>
+                  
+                </div>
+                <div class="hide row vat-shipping">
+                    <div class="col-8">
+                        <h4>{{ 'cart.general.shipping_at_checkout' | t }}</h4>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h4></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                    <a href="/cart" class="d-block mt-4 w-100 continue-shopping black_btn" title="Continue shopping">Buy now</a>
+                    <a href="/collections/all" class="d-block mt-4 w-100 continue-shopping" title="Continue shopping">Continue shopping</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% else %}
+    <div class="hc-mini-table">
+        <div class="supports-cookies text-center m-5">
+            <h4>{{ 'cart.general.empty' | t }}</h4>
+            <a href="/collections/all" class="d-block mt-5 w-100 continue-shopping" title="Continue shopping">Continue shopping</a>
+        </div>
+        <div class="supports-no-cookies text-center m-5">
+            <h4>{{ 'cart.general.cookies_required' | t }}</h4>
+        </div>
+    </div>
+{% endif %}
+</div>

@@ -1,0 +1,459 @@
+{% paginate collection.products by 100 %}
+<div id="fullpage1">
+  <section class="vertical-scrolling mx-auto contentWidth">
+    <div class="container-fluid h-100">
+      {% assign counter = 1 %}
+      {% for product in collection.products %}
+        {% for option in product.options %}
+          {% if option == 'Color' %}
+            {% assign index = forloop.index0 %}
+            {% assign colorlist = '' %}
+            {% assign color = '' %}
+            {% for variant in product.variants %}
+              {% capture color %}
+              {{ variant.options[index] }}
+              {% endcapture %}
+              {% unless colorlist contains color %}
+              <!-- <div>
+                <a href="{{ variant.url | within: collection }}">{{ variant.title }}</a>
+                {{ variant.price | money }}
+                {% unless variant.available %}<br><strong>sold out</strong>{% endunless %}
+                <a href="{{ product.url | within: collection }}">
+                  <img src="{{ variant | img_url: 'master' }}" alt="{{ variant.image.alt | escape }}">
+                </a>
+              </div> -->
+              {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+              {% if counter < 4 %}
+                {% if thecycle == 'odd' %}
+                  <div class="row h-100 no-gutters">
+                    <div class="col-lg-6 products index-{{counter}}">
+                      <div class="row no-gutters">
+                        <div class="col-lg-9">
+                          <a href="{{ variant.url | within: collection }}">
+                            <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
+                            {{ variant | img_url: '1800x' }} 1800w,
+                            {{ variant | img_url: '1600x' }} 1600w,
+                            {{ variant | img_url: '1400x' }} 1400w,
+                            {{ variant | img_url: '1200x' }} 1200w,
+                            {{ variant | img_url: '1000x' }} 1000w,
+                            {{ variant | img_url: '800x' }} 800w,
+                            {{ variant | img_url: '600x' }} 600w,
+                            {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                          </a>
+                          <ul class="d-flex justify-content-between mt-4">
+                            <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
+                            <li class="text-right">{% include 'dots' with 'Color' %}{% unless variant.available %}<span class="sold_out_txt">sold out</span>{% endunless %}</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                {% else %}
+                    <div class="col-lg-6 products section_center1 index-{{counter}}">
+                      <div class="row no-gutters">
+                        <div class="col-lg-12 mt-50">
+                          <a href="{{ variant.url | within: collection }}">
+                              <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
+                              {{ variant | img_url: '1800x' }} 1800w,
+                              {{ variant | img_url: '1600x' }} 1600w,
+                              {{ variant | img_url: '1400x' }} 1400w,
+                              {{ variant | img_url: '1200x' }} 1200w,
+                              {{ variant | img_url: '1000x' }} 1000w,
+                              {{ variant | img_url: '800x' }} 800w,
+                              {{ variant | img_url: '600x' }} 600w,
+                              {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                          </a>
+                          <ul class="d-flex justify-content-between mt-4">
+                            <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
+                            <li class="text-right">{% include 'dots' with 'Color' %}{% unless variant.available %}<span class="sold_out_txt">sold out</span>{% endunless %}</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              {% elsif counter == 4%}
+                </div>  
+                <div class="row no-gutters">
+                  <div class="col-lg-7 offset-lg-5 products section_center1 index-{{counter}}">
+                    <div class="row no-gutters">
+                      <div class="col-lg-12 mt-20">
+                        {% assign article = articles['stories/following-dreams'] %}
+                        {% assign image_src = article.image | img_url: "master" %}
+                        <a href="{{ article.url }}"><img src="{{ article.image | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ article.image | img_url: '2000x' }} 2000w,
+                          {{ article.image | img_url: '1800x' }} 1800w,
+                          {{ article.image | img_url: '1600x' }} 1600w,
+                          {{ article.image | img_url: '1400x' }} 1400w,
+                          {{ article.image | img_url: '1200x' }} 1200w,
+                          {{ article.image | img_url: '1000x' }} 1000w,
+                          {{ article.image | img_url: '800x' }} 800w,
+                          {{ article.image | img_url: '600x' }} 600w,
+                          {{ article.image | img_url: '420x' }} 420w" class="img-fluid d-block lazyload"></a>
+                        <h5 class="mt-4 mb-4">STORY</h5>
+                        <h3 class="mt-4">{{ article.title | link_to: article.url }}</h3>
+                        <p class="mb-4 mb-lg-0">{{ article.excerpt }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row h-100 no-gutters">
+                  <div class="col-lg-6 products mt-20 index-{{counter}}">
+                    <div class="row no-gutters">
+                      <div class="col-lg-12">
+                        <a href="{{ variant.url | within: collection }}">
+                          <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
+                          {{ variant | img_url: '1800x' }} 1800w,
+                          {{ variant | img_url: '1600x' }} 1600w,
+                          {{ variant | img_url: '1400x' }} 1400w,
+                          {{ variant | img_url: '1200x' }} 1200w,
+                          {{ variant | img_url: '1000x' }} 1000w,
+                          {{ variant | img_url: '800x' }} 800w,
+                          {{ variant | img_url: '600x' }} 600w,
+                          {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                        </a>
+                        <ul class="d-flex justify-content-between mt-4">
+                          <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
+                          <li class="text-right">{% include 'dots' with 'Color' %}{% unless variant.available %}<span class="sold_out_txt">sold out</span>{% endunless %}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>                
+              {% elsif counter > 4 and counter < 6 %}
+                {% if thecycle == 'even' %}
+                  <div class="row h-100 no-gutters">
+                    <div class="col-lg-6 products mt-20 index-{{counter}}">
+                      <div class="row no-gutters">
+                        <div class="col-lg-12">
+                          <a href="{{ variant.url | within: collection }}">
+                            <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
+                            {{ variant | img_url: '1800x' }} 1800w,
+                            {{ variant | img_url: '1600x' }} 1600w,
+                            {{ variant | img_url: '1400x' }} 1400w,
+                            {{ variant | img_url: '1200x' }} 1200w,
+                            {{ variant | img_url: '1000x' }} 1000w,
+                            {{ variant | img_url: '800x' }} 800w,
+                            {{ variant | img_url: '600x' }} 600w,
+                            {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                          </a>
+                          <ul class="d-flex justify-content-between mt-4">
+                            <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
+                            <li class="text-right">{% include 'dots' with 'Color' %}{% unless variant.available %}<span class="sold_out_txt">sold out</span>{% endunless %}</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                {% else %}
+                    <div class="col-lg-6 products section_center1 index-{{counter}} mt-10">
+                      <div class="row no-gutters">
+                        <div class="col-lg-8 offset-lg-4 mt-50">
+                          <a href="{{ variant.url | within: collection }}">
+                              <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
+                              {{ variant | img_url: '1800x' }} 1800w,
+                              {{ variant | img_url: '1600x' }} 1600w,
+                              {{ variant | img_url: '1400x' }} 1400w,
+                              {{ variant | img_url: '1200x' }} 1200w,
+                              {{ variant | img_url: '1000x' }} 1000w,
+                              {{ variant | img_url: '800x' }} 800w,
+                              {{ variant | img_url: '600x' }} 600w,
+                              {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                          </a>
+                          <ul class="d-flex justify-content-between mt-4">
+                            <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
+                            <li class="text-right">{% include 'dots' with 'Color' %}{% unless variant.available %}<span class="sold_out_txt">sold out</span>{% endunless %}</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}        
+              {% elsif counter == 6 %}
+                <div class="row no-gutters">
+                  <div class="col-lg-7 products section_center1 index-{{counter}}">
+                    <div class="row no-gutters">
+                      <div class="col-lg-12 mt-20">
+                          {% assign article = articles['stories/chasing-the-great-white-shark'] %}
+                          {% assign image_src = article.image | img_url: "master" %}
+                          <a href="{{ article.url }}"><img src="{{ article.image | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ article.image | img_url: '2000x' }} 2000w,
+                            {{ article.image | img_url: '1800x' }} 1800w,
+                            {{ article.image | img_url: '1600x' }} 1600w,
+                            {{ article.image | img_url: '1400x' }} 1400w,
+                            {{ article.image | img_url: '1200x' }} 1200w,
+                            {{ article.image | img_url: '1000x' }} 1000w,
+                            {{ article.image | img_url: '800x' }} 800w,
+                            {{ article.image | img_url: '600x' }} 600w,
+                            {{ article.image | img_url: '420x' }} 420w" class="img-fluid d-block lazyload"></a>
+                          <h5 class="mt-4 mb-4">STORY</h5>
+                          <h3 class="mt-4">{{ article.title | link_to: article.url }}</h3>
+                          <p>{{ article.excerpt }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>                
+                <div class="row h-100 no-gutters">
+                  <div class="col-lg-6 offset-lg-6 products section_center1 index-{{counter}}">
+                    <div class="row no-gutters">
+                      <div class="col-lg-8 offset-lg-4">
+                        <a href="{{ variant.url | within: collection }}">
+                            <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
+                            {{ variant | img_url: '1800x' }} 1800w,
+                            {{ variant | img_url: '1600x' }} 1600w,
+                            {{ variant | img_url: '1400x' }} 1400w,
+                            {{ variant | img_url: '1200x' }} 1200w,
+                            {{ variant | img_url: '1000x' }} 1000w,
+                            {{ variant | img_url: '800x' }} 800w,
+                            {{ variant | img_url: '600x' }} 600w,
+                            {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                        </a>
+                        <ul class="d-flex justify-content-between mt-4">
+                          <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
+                          <li class="text-right">{% include 'dots' with 'Color' %}{% unless variant.available %}<span class="sold_out_txt">sold out</span>{% endunless %}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% elsif counter > 6 %}
+                {% if thecycle == 'odd' %}
+                  <div class="row h-100 no-gutters">
+                    <div class="col-lg-6 products index-{{counter}}">
+                      <div class="row no-gutters">
+                        <div class="col-lg-12">
+                          <a href="{{ variant.url | within: collection }}">
+                            <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
+                            {{ variant | img_url: '1800x' }} 1800w,
+                            {{ variant | img_url: '1600x' }} 1600w,
+                            {{ variant | img_url: '1400x' }} 1400w,
+                            {{ variant | img_url: '1200x' }} 1200w,
+                            {{ variant | img_url: '1000x' }} 1000w,
+                            {{ variant | img_url: '800x' }} 800w,
+                            {{ variant | img_url: '600x' }} 600w,
+                            {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                          </a>
+                          <ul class="d-flex justify-content-between mt-4">
+                            <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
+                            <li class="text-right">{% include 'dots' with 'Color' %}{% unless variant.available %}<span class="sold_out_txt">sold out</span>{% endunless %}</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                {% else %}
+                    <div class="col-lg-6 products section_center1 index-{{counter}}">
+                      <div class="row no-gutters">
+                        <div class="col-lg-9 offset-lg-3 mt-50">
+                          <a href="{{ variant.url | within: collection }}">
+                              <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
+                              {{ variant | img_url: '1800x' }} 1800w,
+                              {{ variant | img_url: '1600x' }} 1600w,
+                              {{ variant | img_url: '1400x' }} 1400w,
+                              {{ variant | img_url: '1200x' }} 1200w,
+                              {{ variant | img_url: '1000x' }} 1000w,
+                              {{ variant | img_url: '800x' }} 800w,
+                              {{ variant | img_url: '600x' }} 600w,
+                              {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                          </a>
+                          <ul class="d-flex justify-content-between mt-4">
+                            <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
+                            <li class="text-right">{% include 'dots' with 'Color' %}{% unless variant.available %}<span class="sold_out_txt">sold out</span>{% endunless %}</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endif %}
+              {% capture tempList %}
+              {{colorlist | append: color | append: " " }}
+              {% endcapture %}
+              {% assign colorlist = tempList %}
+              {% endunless %}
+              {% assign counter = counter | plus: 1 %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
+</div> 
+{% if paginate.pages > 1 %}
+{{ paginate | default_pagination }}
+{% endif %}
+{% endpaginate %}
+<style>
+    {% assign width = '10px' %}
+    {% assign height = '10px' %}
+    .swatch { 
+      padding-top: 5px;
+      display: inline-block;
+    }
+    /* Label */
+    .swatch .header {
+      margin: 0.5em 0;
+    }
+    /* Hide radio buttons.*/
+    .swatch input { 
+      display:none;
+    }
+    .swatch label {
+      /* Rounded corners */
+      -webkit-border-radius:2px;
+      -moz-border-radius:2px;
+      border-radius:50%;
+      /* To give width and height */
+      float:left;
+      /* Color swatches contain no text so they need to have a width. */
+      min-width:{{ width }} !important; 
+      height:{{ height }} !important;
+      /* No extra spacing between them */
+      margin:0;
+      /* The border when the button is not selected */
+      /* border:#ccc 1px solid; */
+      /* Background color */
+      background-color:#ddd;
+      /* Styling text */
+      font-size:13px;
+      text-align:center;
+      line-height:{{ height }};
+      white-space:nowrap;
+      text-transform:uppercase;
+    }
+    .swatch-element label { padding:0 10px; }
+    .color.swatch-element label { padding:0; }
+    /* Styling selected swatch */
+    /* Slightly raised */
+    /*.swatch input:checked + label {
+      -webkit-box-shadow:0px 1px 2px rgba(0,0,0,0.8);
+      -moz-box-shadow:0px 1px 2px rgba(0,0,0,0.8);
+      box-shadow:0px 1px 2px rgba(0,0,0,0.8);
+      border-color:transparent;
+      width:21px !important;
+      height: 21px !important;
+      margin-top: -1px;
+    }
+    .swatch input:checked + label:after {
+      content: "";
+      border: 2px solid #ccc;
+      width: 29px !important;
+      height: 29px !important;
+      border-radius: 100px;
+      display: inline-block;
+      margin: -4px;
+    }*/
+    .swatch .swatch-element {
+      float:left;
+      -webkit-transform:translateZ(0); /* webkit flicker fix */
+      -webkit-font-smoothing:antialiased; /* webkit text rendering fix */
+      /* Spacing between buttons */
+      margin:0px 5px 0px 0;
+      /* To position the sold out graphic and tooltip */
+      position:relative;
+    }
+    /* Image with the cross in it */
+    .crossed-out { position:absolute; width:100%; height:100%; left:0; top:0; }
+    .swatch .swatch-element .crossed-out { display:none; }
+    .swatch .swatch-element.soldout .crossed-out { display:block; }
+    .swatch .swatch-element.soldout label {
+      filter: alpha(opacity=60); /* internet explorer */
+      -khtml-opacity: 0.6;      /* khtml, old safari */
+      -moz-opacity: 0.6;       /* mozilla, netscape */
+      opacity: 0.6;           /* fx, safari, opera */
+    }
+    /* Tooltips */
+    .swatch .tooltip {
+      text-align:center;
+      background:gray;
+      color:#fff;
+      bottom:100%;
+      padding: 10px;
+      display:block;
+      position:absolute;
+      width:100px;
+      left:{{ width | remove: 'px' | to_number | divided_by: 2 | minus: 50 | plus: 2 }}px;
+      margin-bottom:15px;
+      /* Make it invisible by default */
+      filter:alpha(opacity=0);
+      -khtml-opacity: 0;
+      -moz-opacity: 0;
+      opacity:0;
+      visibility:hidden;
+      /* Animations */
+      -webkit-transform: translateY(10px);
+         -moz-transform: translateY(10px);
+          -ms-transform: translateY(10px);
+           -o-transform: translateY(10px);
+              transform: translateY(10px);
+      -webkit-transition: all .25s ease-out;
+         -moz-transition: all .25s ease-out;
+          -ms-transition: all .25s ease-out;
+           -o-transition: all .25s ease-out;
+              transition: all .25s ease-out;
+      -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+         -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+          -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+           -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+              box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+      z-index: 10000;
+      -moz-box-sizing:border-box; 
+      -webkit-box-sizing:border-box; 
+      box-sizing:border-box;
+    }
+    .swatch .tooltip:before {
+      bottom:-20px;
+      content:" ";
+      display:block;
+      height:20px;
+      left:0;
+      position:absolute;
+      width:100%;
+    }
+    /* CSS triangle */
+    .swatch .tooltip:after {
+      border-left:solid transparent 10px;
+      border-right:solid transparent 10px;
+      border-top:solid gray 10px;
+      bottom:-10px;
+      content:" ";
+      height:0;
+      left:50%;
+      margin-left:-13px;
+      position:absolute;
+      width:0;
+    }
+    .swatch .swatch-element:hover .tooltip {
+      filter:alpha(opacity=100);
+      -khtml-opacity:1;
+      -moz-opacity:1;
+      opacity:1;
+      visibility:visible;
+      -webkit-transform:translateY(0px);
+         -moz-transform:translateY(0px);
+          -ms-transform:translateY(0px);
+           -o-transform:translateY(0px);
+              transform:translateY(0px);
+    }
+    .swatch.error {
+      background-color:#E8D2D2!important;
+      color:#333!important;
+      padding:1em;
+      border-radius:5px;
+    }
+    .swatch.error p {
+      margin:0.7em 0;
+    }
+    .swatch.error p:first-child {
+      margin-top:0;
+    }
+    .swatch.error p:last-child {
+      margin-bottom:0;
+    }
+    .swatch.error code {
+      font-family:monospace;
+    }
+    .selected_color {
+      font-size: 14px;
+      letter-spacing: 1.08px;
+    }
+    .swatch_area {
+      border-top: 1px solid #ccc;
+      padding: 20px 0 20px 0;
+      /* border-bottom: 1px solid #ccc; */
+    }   
+    </style>

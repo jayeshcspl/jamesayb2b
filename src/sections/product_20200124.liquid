@@ -1,0 +1,574 @@
+<div id="fullpage1">
+    <section data-section-id="{{ section.id }}" data-section-type="product" class="vertical-scrolling">
+      {%- assign current_variant = product.selected_or_first_available_variant -%}
+      {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+      <div class="big-break"></div>
+      <div class="container-fluid product-container px-0">
+        <div class="row mx-0">
+          <div class="col-lg-6 px-lg-0 product-order">
+            <div class="product-image">
+              <span class="arrow-shop"><img src="{{ 'shop_arrow.png' | asset_url }}" class="img-fluid"></span>
+              {% assign featured_alt = current_variant.option1 %}
+              {% for image in product.images %}
+                {% capture wrapper_class %}
+                  {%- unless featured_image == image -%}
+                  hide
+                  {%- endunless -%}
+                {% endcapture %}
+                {% assign image_alt = image.alt | split: " - " %}
+                {% capture data_fancybox %}
+                  {% if image_alt[1] == featured_alt %}
+                    data-fancybox="gallery"
+                  {% else %}
+                    data-fancybox=""
+                  {% endif %}
+                {% endcapture %}
+                
+                {% include 'responsive-image' with
+                image: image,
+                max_width: 1500,
+                max_height: 1500,
+                image_attributes: "data-product-featured-image",
+                wrapper_class: wrapper_class,
+                wrapper_attributes: "data-product-image-wrapper",
+                data_fancybox: data_fancybox,
+                %}
+              {% endfor %}
+              {% if product.images.size > 1 %}
+                <div class="prodcut_gallery row justify-content-center">
+                  <ul class="list-inline">
+                    {% assign featured_alt = product.selected_or_first_available_variant.option1 %}
+                    {% for image in product.images %}
+                        <li class="list-inline-item" {% if image.alt == featured_alt or image == featured_image %} style="display: inline-block;" {% else %} style="display: none;" {% endif %}>
+                          <a href="{{ image.src | img_url: '480x480' }}" data-thumbnail-id="{{ image.id }}" data-product-single-thumbnail{% if featured_image == image %} aria-current="true"{% endif %}>
+                            <img class="product-single__thumbnail-image" src="{{ image.src
+                            | img_url: '55x55' }}" alt="{{ image.alt | escape }}" data-featured-image-id="{{ image.id }}">
+                          </a>
+                        </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+              <!-- {% if section.settings.show_share_buttons %}
+                {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+              {% endif %} -->
+            </div><!-- container -->
+          </div><!-- col -->
+          <div class="col-lg-6 d-lg-flex text-left shop1_imgr position-relative">
+            {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+            <div class="col-lg-8 offset-lg-2">
+              <h1 class="d-none d-lg-block">{{current_variant.sku}} - {{ product.title }}</h1>
+              <h1 class="d-block d-lg-none text-center">{{current_variant.sku}} <br /> {{ product.title }}</h1>
+              {% assign short_description = product.metafields.cf_product.short_description %}
+              <p>{{ short_description }}.</p>
+
+              <p data-toggle="collapse" data-target="#gender" class="mb-1 mt-5 plus_sign">&nbsp;&nbsp;Gender</p>
+              {% assign gender = product.metafields.cf_product.gender %}
+              <div id="gender" class="collapse"><div>{{ gender }}</div></div>
+              <p data-toggle="collapse" data-target="#shipping" class="mb-1 plus_sign">&nbsp;&nbsp;Shipping</p>
+              {% assign shipping = product.metafields.cf_product.shipping %}
+              <div id="shipping" class="collapse"><div>{{ shipping }}</div></div>
+              <p data-toggle="collapse" data-target="#sizing" class="mb-1 plus_sign">&nbsp;&nbsp;Sizing</p>
+              {% assign sizing = product.metafields.cf_product.sizing %}
+              <div id="sizing" class="collapse"><div>{{ sizing }}</div></div>            
+              
+              <div data-price-wrapper class="mt-5">
+                <div class="row">
+                  <div class="col">
+                    {% if product.compare_at_price_max > product.price %}
+                      <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+                      <s data-compare-price>
+                        {% if current_variant.compare_at_price > current_variant.price %}
+                          {{ current_variant.compare_at_price | money }}
+                        {% endif %}
+                      </s>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col money" style="font-size: 2em;">
+                    <span data-product-price>
+                      {{ current_variant.price | money }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="pb-2 pt-4">
+    
+                <div class="form-group">
+                  {% if product.has_only_default_variant %}
+                    <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+                  {% else %}
+                    {% for option in product.options_with_values %}
+                      <div class="js">
+    
+                        {% if forloop.index0 > 0 %}
+    
+                          {% for value in option.values %}
+                            <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+                            <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
+                          {% endfor %}
+    
+                        {% else %}
+                          <select
+                            class="custom-select single-option-selector"
+                            id="Option{{ option.position }}"
+                            name="options[{{ option.name | escape }}]" style="display: none;">
+                            {% for value in option.values %}
+                              <option
+                                value="{{ value | escape }}"
+                                {% if option.selected_value == value %}selected="selected"{% endif %}>
+                              {{ value }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                          <div class="swatch_area">
+                              {% include 'swatch' with 'Color' %}
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+    
+                  <noscript>
+                    <select name="id" class="single-option-selector">
+                      {% for variant in product.variants %}
+                        <option
+                          {% if variant == current_variant %}selected="selected"{% endif %}
+                          {% unless variant.available %}disabled="disabled"{% endunless %}
+                          value="{{ variant.id }}">
+                        {{ variant.title }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </noscript>
+                  <input class="form-control" type="hidden" id="quantity" name="quantity" value="1" min="1">
+                </div>
+    
+              </div>
+            </div>
+            <div class="col-lg-8 offset-lg-2 buy-now-btn text-center text-lg-left">
+              <button
+              type="submit"
+              name="add"
+              class="btn-signup ajax_add_to_Cart_Btn"
+              data-submit-button
+              {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                <span data-submit-button-text>
+                  {% if current_variant.available %}
+                  <!-- {{ 'products.product.add_to_cart' | t }} -->
+                    Buy
+                  {% else %}
+                  {{ 'products.product.sold_out' | t }}
+                  {% endif %}
+                </span>
+              </button>
+            </div>
+          {% endform %}
+          </div><!-- col -->
+        </div><!-- row -->
+      </div><!-- container -->
+  
+    </section>
+  
+    {% schema %}
+      {
+        "name": "Product pages",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_share_buttons",
+            "label": "Show social sharing buttons",
+            "default": false
+          }
+        ]
+      }
+    {% endschema %}
+    <section class="vertical-scrolling main_description">
+      <div class="container-fluid">
+        <div class="row h-100 text-center text-lg-left">
+          <div class="col col-md-8 offset-md-2 col-lg-6 offset-lg-3 d-block about">
+            <h3>Description</h3>
+            {{ product.description }}        
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    {% if product.metafields.cf_p_detail.banner_img_1 != blank %}
+    {% assign banner_img_1 = product.metafields.cf_p_detail.banner_img_1 %}
+    {% else %}
+    {% assign banner_img_1 = "https://cdn.shopify.com/s/files/1/0224/6066/1824/files/default.jpg?25255" %}
+    {% endif %}
+    {% if product.metafields.cf_p_detail.banner_img_2 != blank %}
+    {% assign banner_img_2 = product.metafields.cf_p_detail.banner_img_2 %}
+    {% else %}
+    {% assign banner_img_2 = "https://cdn.shopify.com/s/files/1/0224/6066/1824/files/default.jpg?25255" %}
+    {% endif %}
+    {% if product.metafields.cf_p_detail.banner_img_3 != blank %}
+    {% assign banner_img_3 = product.metafields.cf_p_detail.banner_img_3 %}
+    {% else %}
+    {% assign banner_img_3 = "https://cdn.shopify.com/s/files/1/0224/6066/1824/files/default.jpg?25255" %}
+    {% endif %}
+  
+      <section class="vertical-scrolling">
+        <div class="container-fluid">
+          <div class="row h-100 product_details">
+            <div class="col col-lg-8 offset-lg-2">
+              <img src="{{ banner_img_1 }}" class="img-fluid w-100">
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <section class="vertical-scrolling">
+        <div class="container-fluid">
+          <div class="row h-100">
+            <div class="col-lg-4 offset-lg-1 about_section section_center1 mb-20">
+              <div class="row">
+                <div class="col-lg-12 rakel_jamesay_img">
+                  <img src="{{ banner_img_2 }}" class="img-fluid w-100">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 offset-lg-3 about_section product_details">  
+              <div class="row">
+                <div class="col-lg-12">
+                  <img src="{{ banner_img_3 }}" class="img-fluid w-100">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+    {% if product.metafields.cf_p_detail1.title1 != blank %}
+    {% assign title1 = product.metafields.cf_p_detail1.title1 %}
+    {% else %}
+    {% assign title1 = "Title 1" %}
+    {% endif %}
+    {% if product.metafields.cf_p_detail1.image1 != blank %}
+    {% assign image1 = product.metafields.cf_p_detail1.image1 %}
+    {% else %}
+    {% assign image1 = "https://cdn.shopify.com/s/files/1/0224/6066/1824/files/default.jpg?25255" %}
+    {% endif %}
+    {% if product.metafields.cf_p_detail1.text1 != blank %}
+    {% assign text1 = product.metafields.cf_p_detail1.text1 %}
+    {% else %}
+    {% assign text1 = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." %}
+    {% endif %}
+    
+    {% if product.metafields.cf_p_detail2.title2 != blank %}
+    {% assign title2 = product.metafields.cf_p_detail2.title2 %}
+    {% else %}
+    {% assign title2 = "Title 2" %}
+    {% endif %}
+    {% if product.metafields.cf_p_detail2.image2 != blank %}
+    {% assign image2 = product.metafields.cf_p_detail2.image2 %}
+    {% else %}
+    {% assign image2 = "https://cdn.shopify.com/s/files/1/0224/6066/1824/files/default.jpg?25255" %}
+    {% endif %}
+    {% if product.metafields.cf_p_detail2.text2 != blank %}
+    {% assign text2 = product.metafields.cf_p_detail2.text2 %}
+    {% else %}
+    {% assign text2 = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." %}
+    {% endif %} 
+  
+    {% if product.metafields.cf_p_detail3.title3 != blank %}
+    {% assign title3 = product.metafields.cf_p_detail3.title3 %}
+    {% else %}
+    {% assign title3 = "Title 3" %}
+    {% endif %}
+    {% if product.metafields.cf_p_detail3.image3 != blank %}
+    {% assign image3 = product.metafields.cf_p_detail3.image3 %}
+    {% else %}
+    {% assign image3 = "https://cdn.shopify.com/s/files/1/0224/6066/1824/files/default.jpg?25255" %}
+    {% endif %}
+    {% if product.metafields.cf_p_detail3.text3 != blank %}
+    {% assign text3 = product.metafields.cf_p_detail3.text3 %}
+    {% else %}
+    {% assign text3 = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." %}
+    {% endif %} 
+  
+    {% if product.metafields.cf_p_detail4.title4 != blank %}
+    {% assign title4 = product.metafields.cf_p_detail4.title4 %}
+    {% else %}
+    {% assign title4 = "Title 4" %}
+    {% endif %}
+    {% if product.metafields.cf_p_detail4.image4 != blank %}
+    {% assign image4 = product.metafields.cf_p_detail4.image4 %}
+    {% else %}
+    {% assign image4 = "https://cdn.shopify.com/s/files/1/0224/6066/1824/files/default.jpg?25255" %}
+    {% endif %}
+    {% if product.metafields.cf_p_detail4.text4 != blank %}
+    {% assign text4 = product.metafields.cf_p_detail4.text4 %}
+    {% else %}
+    {% assign text4 = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." %}
+    {% endif %}
+  
+    <section class="vertical-scrolling">
+      <div class="container-fluid text-center text-lg-left">
+        <div class="row h-100">
+          <div class="col-lg-4 ml-6 about_section section_center1">
+            <div class="row">
+              <div class="col-lg-12">
+                <img src="{{ image1 }}" class="img-fluid w-100">
+                <h4 class="shop_sml_title mt-4 pt-5 pt-lg-0">{{ title1 }}</h4>
+                <p class="shop_title_desc pb-5 pb-lg-0">{{ text1 }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 offset-lg-1 about_section title-2">            
+            <div class="row">
+              <div class="col-lg-12">
+                <img src="{{ image2 }}" class="img-fluid w-100">
+                <h4 class="shop_sml_title mt-4 pt-5 pt-lg-0">{{ title2 }}</h4>
+                <p class="shop_title_desc">{{ text2 }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="vertical-scrolling">
+      <div class="container-fluid  text-center text-lg-left">
+        <div class="row h-100">          
+          <div class="col-lg-5 ml-6 about_section">            
+            <div class="row">
+              <div class="col-lg-12">
+                <img src="{{ image3 }}" class="img-fluid  w-100">
+                <h4 class="shop_sml_title mt-4 pt-5 pt-lg-0">{{ title3 }}</h4>
+                <p class="shop_title_desc pb-5 pb-lg-0">{{ text3 }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 offset-lg-2 about_section section_center1">
+            <div class="row">
+              <div class="col-lg-12">
+                <img src="{{ image4 }}" class="img-fluid w-100">
+                <h4 class="shop_sml_title mt-4 pt-5 pt-lg-0">{{ title4 }}</h4>
+                <p class="shop_title_desc">{{ text4 }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    {% if product.metafields.cf_p_detail_story.story != blank %}
+    {% assign story = product.metafields.cf_p_detail_story.story %}
+    {% else %}
+    {% assign story = "stories/following-dreams" %}
+    {% endif %}
+  
+    {% assign article = articles[story] %}
+    {% assign desktop_img = article.image | img_url: "master" %}
+    {% if article.metafields.cf_story.mobile_img %}
+    {% assign mobile_img = article.metafields.cf_story.mobile_img | file_url %}
+    {% else %}
+    {% assign mobile_img = desktop_img %}
+    {% endif %}
+  
+    <section class="vertical-scrolling shop_selected mt-20" style="background-image: url('{{desktop_img}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+      <div class="container-fluid h-100">
+        <div class="row h-100 no-gutters mx-auto contentWidth">
+          <div class="col-lg-12 my-auto h-100 text-left shop_selected_section">
+            <a href="{{ article.url }}">
+              <h5 class="story">STORY</h5>
+              <h2>{{ article.title }}</h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section> 
+  
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 mt-20 text-center about">
+          <h3 class="text-center mx-auto" style="max-width: 640px;">James Ay is not only a brand, really, it’s a philosophy. A way of exploring - and experimenting with - all layers of life.</h3>
+          <a href="/pages/about" class="col-3 mt-6 continue-shopping" title="Continue shopping">Read More</a>
+          <h2 class="mt-10 followthesun">#followthesun</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+  {% assign width = '20px' %}
+  {% assign height = '20px' %}
+  .swatch { 
+    margin:1em 0; 
+  }
+  /* Label */
+  .swatch .header {
+    margin: 0.5em 0;
+  }
+  /* Hide radio buttons.*/
+  .swatch input { 
+    display:none;
+  }
+  .swatch label {
+    /* Rounded corners */
+    -webkit-border-radius:2px;
+    -moz-border-radius:2px;
+    border-radius:50%;
+    /* To give width and height */
+    float:left;
+    /* Color swatches contain no text so they need to have a width. */
+    min-width:{{ width }} !important; 
+    height:{{ height }} !important;
+    /* No extra spacing between them */
+    margin:0;
+    /* The border when the button is not selected */
+    /* border:#ccc 1px solid; */
+    /* Background color */
+    background-color:#ddd;
+    /* Styling text */
+    font-size:13px;
+    text-align:center;
+    line-height:{{ height }};
+    white-space:nowrap;
+    text-transform:uppercase;
+  }
+  .swatch-element label { padding:0 10px; }
+  .color.swatch-element label { padding:0; }
+  /* Styling selected swatch */
+  /* Slightly raised */
+  .swatch input:checked + label {
+    /* -webkit-box-shadow:0px 1px 2px rgba(0,0,0,0.8); */
+    /* -moz-box-shadow:0px 1px 2px rgba(0,0,0,0.8); */
+    /* box-shadow:0px 1px 2px rgba(0,0,0,0.8); */
+    border-color:transparent;
+    width:21px !important;
+    height: 21px !important;
+    margin-top: -1px;
+  }
+  .swatch input:checked + label:after {
+    content: "";
+    border: 2px solid #ccc;
+    width: 29px !important;
+    height: 29px !important;
+    border-radius: 100px;
+    display: inline-block;
+    margin: -4px;
+  }
+  .swatch .swatch-element {
+    float:left;
+    -webkit-transform:translateZ(0); /* webkit flicker fix */
+    -webkit-font-smoothing:antialiased; /* webkit text rendering fix */
+    /* Spacing between buttons */
+    margin:0px 10px 0px 0;
+    /* To position the sold out graphic and tooltip */
+    position:relative;
+  }
+  /* Image with the cross in it */
+  .crossed-out { position:absolute; width:100%; height:100%; left:0; top:0; }
+  .swatch .swatch-element .crossed-out { display:none; }
+  .swatch .swatch-element.soldout .crossed-out { display:block; }
+  .swatch .swatch-element.soldout label {
+    filter: alpha(opacity=60); /* internet explorer */
+    -khtml-opacity: 0.6;      /* khtml, old safari */
+    -moz-opacity: 0.6;       /* mozilla, netscape */
+    opacity: 0.6;           /* fx, safari, opera */
+  }
+  /* Tooltips */
+  .swatch .tooltip {
+    text-align:center;
+    background:gray;
+    color:#fff;
+    bottom:100%;
+    padding: 10px;
+    display:block;
+    position:absolute;
+    width:100px;
+    left:{{ width | remove: 'px' | to_number | divided_by: 2 | minus: 50 | plus: 2 }}px;
+    margin-bottom:15px;
+    /* Make it invisible by default */
+    filter:alpha(opacity=0);
+    -khtml-opacity: 0;
+    -moz-opacity: 0;
+    opacity:0;
+    visibility:hidden;
+    /* Animations */
+    -webkit-transform: translateY(10px);
+       -moz-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+         -o-transform: translateY(10px);
+            transform: translateY(10px);
+    -webkit-transition: all .25s ease-out;
+       -moz-transition: all .25s ease-out;
+        -ms-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+    -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+       -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+        -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+         -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+    z-index: 10000;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box; 
+    box-sizing:border-box;
+  }
+  .swatch .tooltip:before {
+    bottom:-20px;
+    content:" ";
+    display:block;
+    height:20px;
+    left:0;
+    position:absolute;
+    width:100%;
+  }
+  /* CSS triangle */
+  .swatch .tooltip:after {
+    border-left:solid transparent 10px;
+    border-right:solid transparent 10px;
+    border-top:solid gray 10px;
+    bottom:-10px;
+    content:" ";
+    height:0;
+    left:50%;
+    margin-left:-13px;
+    position:absolute;
+    width:0;
+  }
+  .swatch .swatch-element:hover .tooltip {
+    filter:alpha(opacity=100);
+    -khtml-opacity:1;
+    -moz-opacity:1;
+    opacity:1;
+    visibility:visible;
+    -webkit-transform:translateY(0px);
+       -moz-transform:translateY(0px);
+        -ms-transform:translateY(0px);
+         -o-transform:translateY(0px);
+            transform:translateY(0px);
+  }
+  .swatch.error {
+    background-color:#E8D2D2!important;
+    color:#333!important;
+    padding:1em;
+    border-radius:5px;
+  }
+  .swatch.error p {
+    margin:0.7em 0;
+  }
+  .swatch.error p:first-child {
+    margin-top:0;
+  }
+  .swatch.error p:last-child {
+    margin-bottom:0;
+  }
+  .swatch.error code {
+    font-family:monospace;
+  }
+  .selected_color {
+    font-size: 14px;
+    letter-spacing: 1.08px;
+  }
+  .swatch_area {
+    border-top: 1px solid #ccc;
+    padding: 20px 0 20px 0;
+    /* border-bottom: 1px solid #ccc; */
+  }   
+  </style>

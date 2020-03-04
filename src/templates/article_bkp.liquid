@@ -1,0 +1,163 @@
+{% if article.metafields.cf_story.is_wearing_title != blank %}
+{% assign is_wearing_title = article.metafields.cf_story.is_wearing_title %}
+{% else %}
+{% assign is_wearing_title = "Kent is wearing" %}
+{% endif %}
+{% if article.metafields.cf_story.product1 != blank %}
+{% assign product1 = article.metafields.cf_story.product1 %}
+{% else %}
+{% assign product1 = "como=29988722049088" %}
+{% endif %}
+{% if article.metafields.cf_story.product2 != blank %}
+{% assign product2 = article.metafields.cf_story.product2 %}
+{% else %}
+{% assign product2 = "como=29988722049088" %}
+{% endif %}
+{% if article.metafields.cf_story.other_story != blank %}
+{% assign other_story = article.metafields.cf_story.other_story %}
+{% else %}
+{% assign other_story = "stories/chasing-the-great-white-shark" %}
+{% endif %}
+
+{% assign result1 = product1 | split: "=" %}
+{% assign product_name1 = result1[0] | strip %}
+{% assign product_id1 = result1[1] | strip | plus: 0 %}
+
+{% for variant in all_products[product_name1].variants %}
+  {% if variant != blank %}
+    {% if variant.id == product_id1 %} 
+      {% assign json_product1 = variant %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% assign result2 = product2 | split: "=" %}
+{% assign product_name2 = result2[0] | strip %}
+{% assign product_id2 = result2[1] | strip | plus: 0 %}
+
+{% for variant in all_products[product_name2].variants %}
+  {% if variant != blank %}
+    {% if variant.id == product_id2 %} 
+      {% assign json_product2 = variant %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% assign desktop_img = article.image | img_url: "master" %}
+{% if article.metafields.cf_story.mobile_img %}
+{% assign mobile_img = article.metafields.cf_story.mobile_img | file_url %}
+{% else %}
+{% assign mobile_img = desktop_img %}
+{% endif %}
+
+{% if article.metafields.cf_story.vimeo_video_id != blank %}
+{% assign vimeo_video_id = article.metafields.cf_story.vimeo_video_id %}
+{% else %}
+{% assign vimeo_video_id = 253989945 %}
+{% endif %}
+
+{% if article.metafields.cf_story.display_video != blank %}
+{% assign display_video = article.metafields.cf_story.display_video | downcase %}
+{% else %}
+{% assign display_video = "" %}
+{% endif %}
+
+<div id="fullpage1">
+  {% if display_video != "yes" %}
+    <section class="vertical-scrolling stories_selected" style="background-image: url('{{desktop_img}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+      <div class="container-fluid h-100">
+        <div class="row h-100">
+          <div class="col-lg-12 my-auto h-100 text-center stories_selected_section">
+            <h5>STORY</h5>
+            <h2>{{ article.title }}</h2>
+          </div>
+          <div class="scroll_down">Scroll<br />down</div>
+        </div>
+      </div>
+    </section>
+  {% else %}
+  <section class="vertical-scrolling stories_selected">
+        <div class="vimeo-wrapper">
+          <div id="vimeo-video"></div>
+        </div>
+        <div class="container-fluid h-100">
+          <div class="row h-100">
+            <div class="col-lg-12 my-auto h-100 text-center stories_selected_section" style="z-index: 1000;">
+              <a class="testbg">
+              <h5 class="mb-4">STORY</h5>
+              <h2 class="mb-0 mt-0">{{ article.title }}</h2>
+              </a>
+            </div>
+            <div class="scroll_down">Scroll<br />down</div>
+          </div>
+        </div>      
+  </section>  
+  {% endif %}
+  {{ article.content }}
+  <section class="vertical-scrolling mb-10 mt-10 mx-auto contentWidth">
+    <div class="container-fluid h-100">
+      <div class="row h-100 d-flex align-items-center no-gutters">
+        <div class="col-12 text-center adventure_txt">
+          <h2>{{is_wearing_title}}</h2>
+        </div>
+      </div>
+      <div class="row h-100 mt-0 mt-lg-5 no-gutters">
+        <div class="col-lg-6 products section_center1">
+          <div class="row no-gutters">
+            <div class="col-lg-12" style="text-align: left;">
+              <a href="{{json_product1.url}}">
+              <img src="{{ json_product1.image.src | img_url: 'master' }}" alt="" class="img-fluid" />
+              </a>
+              <br />
+              <ul class="d-flex justify-content-between mt-4">
+                <li class="text-left"><a href="{{json_product1.url}}">{{product_name1 | camelcase}} - {{ json_product1.title }}</a> {{ json_product1.price | money }}</li>
+                <li class="text-right"><span class="oval-blk mr-2"></span><span class="oval-crm mr-2"></span><span class="oval-gry mr-2"></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 products section_center1">
+          <div class="row no-gutters">
+            <div class="col-lg-8 offset-lg-4 mt-30" style="text-align: left;">
+              <a href="{{json_product2.url}}">
+              <img src="{{ json_product2.image.src | img_url: 'master' }}" alt="" class="img-fluid" />
+              </a>
+              <br />
+              <ul class="d-flex justify-content-between mt-4">
+                <li class="text-left"><a href="{{json_product2.url}}">{{product_name2 | camelcase}} - {{ json_product2.title }}</a> {{ json_product2.price | money }}</li>
+                <li class="text-right"><span class="oval-blk mr-2"></span><span class="oval-crm mr-2"></span><span class="oval-gry mr-2"></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% assign article = articles[other_story] %}
+  {% assign desktop_img = article.image | img_url: "master" %}
+  {% if article.metafields.cf_story.mobile_img %}
+  {% assign mobile_img = article.metafields.cf_story.mobile_img | file_url %}
+  {% else %}
+  {% assign mobile_img = desktop_img %}
+  {% endif %}
+  <section class="vertical-scrolling stories_selected_left" style="background-image: url('{{desktop_img}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+    <div class="container-fluid h-100">
+      <div class="row h-100 no-gutters mx-auto contentWidth">
+        <div class="col-lg-12 my-auto h-100 stories_selected_section">
+          <h5 class="text-left"><a href="{{ article.url }}" class="d-block">STORY</a</h5>
+          <h2><a href="{{ article.url }}" class="d-block">{{ article.title | link_to: article.url }}</a></h2>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script type="text/javascript">
+  var options = {
+      id: {{vimeo_video_id}},
+      autoplay: true,
+      loop: true,
+      responsive: true,
+      background: true,
+  };
+  var chasing = new Vimeo.Player('vimeo-video', options);
+</script>
