@@ -2150,28 +2150,146 @@ a.soundest-form-without-image-open {
 	background: none;
 	cursor: url(./shop_arrow.png), auto;
 }
-#store-locator .shop-menu a.l-right svg #search_icon, 
+#store-locator #storemapper {
+	font-family: inherit;
+}
+/*#store-locator .shop-menu a.l-right svg #search_icon, 
 #store-locator .shop-menu a.l-right svg #cart {
 	stroke: #ffffff !important;
 	cursor: pointer;
+}*/
+#storemapper #storemapper-form {
+	border-bottom: 1px solid #ccc;
 }
-#store-locator a.menu_middle.blk i {
-	background: #ffffff;
+
+#store-locator #storemapper #storemapper-form #storemapper-zip {
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
-#store-locator div#storemapper.search_reset_enabled #storemapper-left {
-	position: fixed !important;
-	z-index: 999;
-}
-#store-locator div#storemapper #storemapper-left {
-	float: none;
-	width: 300px;
-	height: 100%;
-	top: 120px;
-}
-#store-locator div#storemapper #storemapper-right {
-	float: none;
+#store-locator #storemapper.show_distance #storemapper-form .storemapper-distance {
 	width: 100%;
-	height: 800px;
+	margin-right: inherit;
+}
+#store-locator #storemapper.show_distance #storemapper-form .storemapper-distance .button-group {
+	font-size: 12px;
+	border: 1px solid #ccc;
+	width: 49%;
+	float: left;
+	background-image: url(./up-down-16.png);
+	background-position: 97%;
+	background-repeat: no-repeat;
+}
+#store-locator #storemapper.show_distance #storemapper-form .storemapper-distance .button-group.kilometer {
+	float: right;
+}
+#store-locator #storemapper.show_distance #storemapper-form .storemapper-distance .button-group button {
+	margin: 6px 12px;
+	border-radius: 0;
+	width: calc(100% - 24px);
+	text-align: left;
+	font-size: 12px;
+}
+#store-locator #storemapper.show_distance #storemapper-form .storemapper-distance .button-group button:focus,
+#store-locator #storemapper.show_distance #storemapper-form .storemapper-distance .button-group button:focus {
+	border: none;
+	outline: none;
+	box-shadow: none;
+}
+#store-locator #storemapper.show_distance #storemapper-form .storemapper-distance .button-group button span.selected {
+	border: 0px solid #333;
+	padding: inherit;
+	display: block;
+	background-color: transparent;
+	font-size: 12px;
+	font-weight: normal;
+}
+#store-locator #storemapper.show_distance #storemapper-form .storemapper-distance .button-group button span.caret {
+	display: none;
+}
+
+#store-locator #storemapper #storemapper-form #storemapper-go {
+	background-color: transparent;
+	text-transform: inherit;
+	position: absolute;
+	top: 16px;
+	right: 20px;
+	width: auto;
+	margin-top: 0px;
+	color: inherit;
+	font-weight: normal;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	padding: 8px 0 7px;
+	font-family: inherit;
+	text-decoration: underline;
+	font-size: 12px;
+}
+#store-locator #storemapper #storemapper-go:focus, 
+#store-locator #storemapper #storemapper-go:active:focus, 
+#store-locator #storemapper #storemapper-go.active:focus {
+	outline: none;
+	outline-offset: inherit;
+}
+
+#store-locator #shopify-section-footer {
+	display: none;
+}
+#store-locator div#storemapper .storemapper-powered-by, 
+#store-locator div#storemapper .storemapper-powered-by[style] {
+	display: none !important;
+}
+#store-locator div#storemapper .storemapper-scroll-top {
+	display: none;
+}
+#store-locator #storemapper #storemapper-list li p {
+	margin-bottom: 0 !important;
+	font-size: 12px;
+	line-height: 1.8;
+}
+#store-locator #storemapper #storemapper-list li p svg {
+	display: none;
+}
+#store-locator div#storemapper.show_icons .storemapper-address, 
+#store-locator div#storemapper.show_icons .storemapper-phone, 
+#store-locator div#storemapper.show_icons .storemapper-email, 
+#store-locator div#storemapper.show_icons .storemapper-url {
+	padding-left: 0;
+	color: inherit;
+}
+#store-locator div#storemapper.show_icons .storemapper-selected .storemapper-address, 
+#store-locator div#storemapper.show_icons .storemapper-selected .storemapper-phone, 
+#store-locator div#storemapper.show_icons .storemapper-selected .storemapper-email, 
+#store-locator div#storemapper.show_icons .storemapper-selected .storemapper-url {
+	color: #ffffff;
+}
+
+
+#store-locator #storemapper #storemapper-list li .storemapper-phone, 
+#store-locator #storemapper #storemapper-list li .storemapper-email {
+	width: inherit;
+	float: none;
+}
+
+#store-locator #storemapper #storemapper-list li h4 {
+	font-weight: normal;
+	margin-bottom: 0;
+	font-size: 12px;
+	line-height: 1.8;
+}
+
+::-webkit-input-placeholder { /* Edge */
+	color: inherit !important;
+	font-size: 12px;
+}
+
+:-ms-input-placeholder { /* Internet Explorer */
+	color: inherit !important;
+	font-size: 12px;
+}
+
+::placeholder {
+	color: inherit !important;
+	font-size: 12px;
 }
 
 /*====================viabill style======================*/

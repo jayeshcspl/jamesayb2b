@@ -255,5 +255,25 @@
       });
     }*/
   </script>
+  <script>
+    jQuery(window).on('load', function(){
+      var deviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+      if(jQuery('#storemapper').length) {
+        jQuery('#store-locator #storemapper.show_distance #storemapper-form .storemapper-distance').append('<div class="button-group kilometer"><button type="button" class="storemapper-dropdown-btn btn btn-default btn-sm"><span class="value">Kilometers</span></button></div>');
+        jQuery('#storemapper-left #storemapper-list').css({
+          "padding": "0px", 
+          "box-shadow": "none"
+        });
+        jQuery('#storemapper-left #storemapper-list li:last-child').css({
+          "margin-bottom":"0px"
+        });
+        if(deviceWidth > 669) {
+          jQuery('#storemapper-right').css({
+            "height": jQuery( window ).height() +"px"
+          });
+        }
+      }
+    });
+  </script>  
 </body>
 </html>

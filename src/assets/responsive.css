@@ -425,7 +425,48 @@
 		display: none;
 	}
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (min-width: 700px) {
+	#store-locator div#storemapper #storemapper-left {
+		position: fixed !important;
+		z-index: 1233;
+		top: 120px;
+		left: 35px;
+		float: none;
+		width: 350px;
+		height: auto;
+		max-height: 80%;
+	}
+	#store-locator div#storemapper #storemapper-right {
+		float: none;
+		width: 100%;
+		height: 800px;
+	}
+}
+@media only screen and (max-width: 669px) {
+	#store-locator #storemapper {
+		display: inherit;
+	}
+	#store-locator #MainContent {
+		margin-top: 51px;
+	}
+	#store-locator .l-left svg .st0 {
+		fill: #000000;
+	}
+	#store-locator .menu_middle i {
+		background-color: #000000;
+	}
+	#store-locator .open-menu .nav-hmenu i:nth-child(2) {
+    background: transparent;
+	}
+	#store-locator .l-right svg #search_icon {
+		stroke: #000000;
+	}
+	#store-locator .l-right svg #cart {
+		stroke: #000000;
+	}
+	#store-locator #CartCount {
+		color: #000000 !important;
+	}
 	[class*="js-conveyor-"] ul li {
 		width: auto;
 	}
