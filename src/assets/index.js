@@ -168,7 +168,11 @@ $(document).ready(function($) {
       $('.ays').show();
     } else {
       $('.header-top').removeClass('stuck');
-      $('.header-top').css({"background-color":"transparent"});
+      if($('body#store-locator').length){
+        $('.header-top').css({"background-color":"#ffffff"});
+      } else {
+        $('.header-top').css({"background-color":"transparent"});
+      }
       $('.james').show();
       $('.ays').hide();
     }

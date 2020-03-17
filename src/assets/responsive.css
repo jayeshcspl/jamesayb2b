@@ -428,11 +428,11 @@
 @media only screen and (min-width: 700px) {
 	#store-locator div#storemapper #storemapper-left {
 		position: fixed !important;
-		z-index: 1233;
+		z-index: 12;
 		top: 120px;
 		left: 35px;
 		float: none;
-		width: 350px;
+		width: 320px;
 		height: auto;
 		max-height: 80%;
 	}
@@ -441,8 +441,19 @@
 		width: 100%;
 		height: 800px;
 	}
+	#store-locator div#storemapper #storemapper-left {
+    overflow-y: inherit;
+	}
+	#store-locator #storemapper #storemapper-list li, 
+	#store-locator #storemapper #storemapper-form {
+		padding: 20px;
+	}
 }
 @media only screen and (max-width: 669px) {
+	#store-locator #storemapper #storemapper-list li,
+	#store-locator #storemapper #storemapper-form {
+		padding: 20px;
+	}
 	#store-locator #storemapper {
 		display: inherit;
 	}
@@ -469,6 +480,9 @@
 	}
 	[class*="js-conveyor-"] ul li {
 		width: auto;
+	}
+	#store-locator #storemapper #storemapper-list {
+    max-height: 300px;
 	}
 }
 @media only screen and (max-width: 320px) {

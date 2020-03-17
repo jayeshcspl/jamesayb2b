@@ -4,7 +4,7 @@
   {% include '3wh-gtm' %}
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>
   <meta name="theme-color" content="{{ settings.color_accent }}">
   <meta http-equiv="Expires" content="30" />
   <link rel="canonical" href="{{ canonical_url }}">
@@ -59,7 +59,7 @@
         url({{ '01.jpg' | file_url }})
         url({{ '02.jpg' | file_url }})
         url({{ '03.jpg' | file_url }})
-        url({{ '04.jpg' | file_url }});
+        url({{ 'Main_menu_stores.jpg' | file_url }});
       }
       #pic {
         opacity: 1;
@@ -83,7 +83,7 @@
         background-position: center center;
       }
       #pic.p4 {
-        background-image: url({{ '04.jpg' | file_url }});
+        background-image: url({{ 'Main_menu_stores.jpg' | file_url }});
         background-size: cover;
         background-position: center center;
       }
@@ -259,17 +259,18 @@
     jQuery(window).on('load', function(){
       var deviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
       if(jQuery('#storemapper').length) {
-        jQuery('#store-locator #storemapper.show_distance #storemapper-form .storemapper-distance').append('<div class="button-group kilometer"><button type="button" class="storemapper-dropdown-btn btn btn-default btn-sm"><span class="value">Kilometers</span></button></div>');
         jQuery('#storemapper-left #storemapper-list').css({
           "padding": "0px", 
           "box-shadow": "none"
         });
-        jQuery('#storemapper-left #storemapper-list li:last-child').css({
-          "margin-bottom":"0px"
-        });
         if(deviceWidth > 669) {
           jQuery('#storemapper-right').css({
             "height": jQuery( window ).height() +"px"
+          });
+        } else {
+          var storemapper_right_height = jQuery( window ).height() - jQuery('#storemapper-left').height() - 51;
+          jQuery('#storemapper-right').css({
+            "height": storemapper_right_height +"px"
           });
         }
       }
