@@ -59,7 +59,7 @@
         url({{ '01.jpg' | file_url }})
         url({{ '02.jpg' | file_url }})
         url({{ '03.jpg' | file_url }})
-        url({{ 'Main_menu_stores.jpg' | file_url }});
+        url({{ '04.jpg' | file_url }});
       }
       #pic {
         opacity: 1;
@@ -83,7 +83,7 @@
         background-position: center center;
       }
       #pic.p4 {
-        background-image: url({{ 'Main_menu_stores.jpg' | file_url }});
+        background-image: url({{ '04.jpg' | file_url }});
         background-size: cover;
         background-position: center center;
       }
@@ -92,7 +92,7 @@
       {% if template == 'index' %}
       body:after{
         display:none;
-        content: url({{ 'videobg_vimeo_mobile.jpg' | file_img_url: '800x' }});
+        content: url({{ 'videobg_vimeo_mobile.jpg' | file_url }});
       }
       {% endif %}
     }    
@@ -116,7 +116,10 @@
     }
     @media screen and (max-width: 991px) {
       .vimeo-wrapper {
-        background-image: url({{ 'videobg_vimeo_mobile.jpg' | file_img_url: '800x' }});
+        background-image: url({{ 'videobg_vimeo_mobile.jpg' | file_url }});
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;        
       }
     }
   </style>

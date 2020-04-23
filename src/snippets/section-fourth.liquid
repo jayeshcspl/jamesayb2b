@@ -15,6 +15,9 @@
 {% assign productname_variantid2 = "como=29988722049088" %}
 {% endif %}
 
+{% if productname_variantid2 contains "https" %}
+  {% assign json_product1 = productname_variantid2 %}
+{% else %}
 {% assign result1 = productname_variantid2 | split: "=" %}
 {% assign product_name1 = result1[0] | strip %}
 {% assign product_id1 = result1[1] | strip | plus: 0 %}
@@ -22,10 +25,11 @@
 {% for variant in all_products[product_name1].variants %}
   {% if variant != blank %}
     {% if variant.id == product_id1 %} 
-      {% assign json_product1 = variant %}
+      {% assign json_product1 = variant.url %}
     {% endif %}
   {% endif %}
 {% endfor %}
+{% endif %}
 
 {% if shop.metafields.fp_halfslide_product.product_model_title2 != blank %}
 {% assign product_model_title2 = shop.metafields.fp_halfslide_product.product_model_title2 %}
@@ -43,7 +47,7 @@
     <div class="container-fluid h-100">
       <div class="row h-100">
         <div class="col-lg-12 my-auto h-100 section1_imgl">
-          <a href="{{json_product1.url}}" class="testbg">
+          <a href="{{json_product1}}" class="testbg">
             <h2 class="overlay_txt is-animated mb-4">{{product_model_description2}}</h2>
             <h5 class="story text-center is-animated mb-0">{{product_model_title2}}</h5>
           </a>

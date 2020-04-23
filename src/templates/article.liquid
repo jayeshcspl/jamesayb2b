@@ -61,7 +61,24 @@
 {% else %}
 {% assign display_video = "" %}
 {% endif %}
-
+<style>
+@media screen and (min-width: 992px) {
+  .vimeo-wrapper {
+    background-image: url({{ desktop_img }});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+@media screen and (max-width: 991px) {
+  .vimeo-wrapper {
+    background-image: url({{ mobile_img }});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;        
+  }
+}
+</style>
 <div id="fullpage1">
   {% if display_video != "yes" %}
     <section class="vertical-scrolling stories_selected" style="background-image: url('{{desktop_img}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
