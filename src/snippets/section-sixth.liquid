@@ -1,0 +1,99 @@
+{% if shop.metafields.fp_2_column.new_two_column_6th_template.disable != 1 %}
+  
+  {% if shop.metafields.fp_2_column.new_two_column_6th_template.left_title != blank %}
+  {% assign left_title = shop.metafields.fp_2_column.new_two_column_6th_template.left_title %}
+  {% else %}
+  {% assign left_title = "" %}
+  {% endif %}
+
+  {% if shop.metafields.fp_2_column.new_two_column_6th_template.left_description != blank %}
+  {% assign left_description = shop.metafields.fp_2_column.new_two_column_6th_template.left_description %}
+  {% else %}
+  {% assign left_description = "" %}
+  {% endif %}
+
+  {% if shop.metafields.fp_2_column.new_two_column_6th_template.left_link != blank %}
+  {% assign left_link = shop.metafields.fp_2_column.new_two_column_6th_template.left_link %}
+  {% else %}
+  {% assign left_link = "#" %}
+  {% endif %}
+
+  {% if shop.metafields.fp_2_column.new_two_column_6th_template.left_bg_image != blank %}
+  {% assign left_bg_image_desktop = shop.metafields.fp_2_column.new_two_column_6th_template.left_bg_image | file_url %}
+  {% else %}
+  {% assign left_bg_image_desktop = "default.png" | file_url %}
+  {% endif %}
+  {% if shop.metafields.fp_2_column.new_two_column_6th_template.left_bg_image_mobile %}
+  {% assign left_bg_image_mobile = shop.metafields.fp_2_column.new_two_column_6th_template.left_bg_image_mobile | file_img_url: '800x' %}
+  {% else %}
+  {% assign left_bg_image_mobile = left_bg_image_desktop %}
+  {% endif %} 
+
+
+  {% if shop.metafields.fp_2_column.new_two_column_6th_template.right_title != blank %}
+  {% assign right_title = shop.metafields.fp_2_column.new_two_column_6th_template.right_title %}
+  {% else %}
+  {% assign right_title = "" %}
+  {% endif %}
+
+  {% if shop.metafields.fp_2_column.new_two_column_6th_template.right_description != blank %}
+  {% assign right_description = shop.metafields.fp_2_column.new_two_column_6th_template.right_description %}
+  {% else %}
+  {% assign right_description = "" %}
+  {% endif %}
+
+  {% if shop.metafields.fp_2_column.new_two_column_6th_template.right_link != blank %}
+  {% assign right_link = shop.metafields.fp_2_column.new_two_column_6th_template.right_link %}
+  {% else %}
+  {% assign right_link = "#" %}
+  {% endif %}
+
+  {% if shop.metafields.fp_2_column.new_two_column_6th_template.right_bg_image != blank %}
+  {% assign right_bg_image_desktop = shop.metafields.fp_2_column.new_two_column_6th_template.right_bg_image | file_url %}
+  {% else %}
+  {% assign right_bg_image_desktop = "default.png" | file_url %}
+  {% endif %}
+  {% if shop.metafields.fp_2_column.new_two_column_6th_template.right_bg_image_mobile %}
+  {% assign right_bg_image_mobile = shop.metafields.fp_2_column.new_two_column_6th_template.right_bg_image_mobile | file_img_url: '800x' %}
+  {% else %}
+  {% assign right_bg_image_mobile = right_bg_image_desktop %}
+  {% endif %}
+
+  
+  <section class="fp-auto-height-responsive vertical-scrolling {{section_number}}" data-section="two-image">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 my-auto section1_imgl  custom_overlay" style="background-image: url({{ left_bg_image_desktop }});" data-desktop-url="{{left_bg_image_desktop}}" data-mobile-url="{{left_bg_image_mobile}}">
+          {% if shop.metafields.fp_2_column.new_two_column_6th_template.display_video == 1 and shop.metafields.fp_2_column.new_two_column_6th_template.display_video_right == 0 %}
+          <div class="vimeo-wrapper">
+            <div id="vimeo_video_id_sixth"></div>
+          </div>
+          {% endif %}
+          <a href="{{left_link}}">
+            <div class="overlay">
+                <div class="text">
+                  <h2 class="overlay_txt mx-auto mb-4 is-animated">{{left_title}}</h2>
+                  <h5 class="story text-center mb-0 is-animated">{{left_description}}</h5>
+                </div>
+            </div>
+          </a>
+        </div>
+        <div class="d-none d-lg-flex col-lg-6 my-auto section1_imgl custom_overlay" style="background-image: url({{ right_bg_image_desktop }});" data-desktop-url="{{right_bg_image_desktop}}" data-mobile-url="{{right_bg_image_mobile}}">
+          {% if shop.metafields.fp_2_column.new_two_column_6th_template.display_video == 1 and shop.metafields.fp_2_column.new_two_column_6th_template.display_video_right == 1 %}
+          <div class="vimeo-wrapper">
+            <div id="vimeo_video_id_sixth"></div>
+          </div>
+          {% endif %}
+          <a href="{{right_link}}">
+            <div class="overlay">
+                <div class="text">
+                  <h2 class="overlay_txt mx-auto mb-4 is-animated">{{right_title}}</h2>
+                  <h5 class="story text-center mb-0 is-animated">{{right_description}}</h5>
+                </div>
+            </div>
+          </a>          
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}

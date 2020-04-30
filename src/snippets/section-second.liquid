@@ -1,64 +1,66 @@
-{% if shop.metafields.fp_halfslide_product.product_model_image != blank %}
-{% assign product_model_image_desktop = shop.metafields.fp_halfslide_product.product_model_image | file_url %}
-{% else %}
-{% assign product_model_image_desktop = "como_kent_stannard_frontpage.jpg" | file_url %}
-{% endif %}
-{% if shop.metafields.fp_halfslide_product.product_model_image_mobile %}
-{% assign product_model_image_mobile = shop.metafields.fp_halfslide_product.product_model_image_mobile | file_img_url: '800x' %}
-{% else %}
-{% assign product_model_image_mobile = product_model_image_desktop %}
-{% endif %} 
-
-{% if shop.metafields.fp_halfslide_product.productname_variantid != blank %}
-{% assign productname_variantid = shop.metafields.fp_halfslide_product.productname_variantid %}
-{% else %}
-{% assign productname_variantid = "como=29988722049088" %}
-{% endif %}
-
-{% assign result1 = productname_variantid | split: "=" %}
-{% assign product_name1 = result1[0] | strip %}
-{% assign product_id1 = result1[1] | strip | plus: 0 %}
-
-{% for variant in all_products[product_name1].variants %}
-  {% if variant != blank %}
-    {% if variant.id == product_id1 %} 
-      {% assign json_product1 = variant %}
-    {% endif %}
+{% if shop.metafields.fp_halfslide_product.disable_product_slide != 1 %}
+  {% if shop.metafields.fp_halfslide_product.product_model_image != blank %}
+  {% assign product_model_image_desktop = shop.metafields.fp_halfslide_product.product_model_image | file_url %}
+  {% else %}
+  {% assign product_model_image_desktop = "default.png" | file_url %}
   {% endif %}
-{% endfor %}
+  {% if shop.metafields.fp_halfslide_product.product_model_image_mobile %}
+  {% assign product_model_image_mobile = shop.metafields.fp_halfslide_product.product_model_image_mobile | file_img_url: '800x' %}
+  {% else %}
+  {% assign product_model_image_mobile = product_model_image_desktop %}
+  {% endif %} 
 
-{% if shop.metafields.fp_halfslide_product.product_model_title != blank %}
-{% assign product_model_title = shop.metafields.fp_halfslide_product.product_model_title %}
-{% else %}
-{% assign product_model_title = "COMO" %}
-{% endif %}
+  {% if shop.metafields.fp_halfslide_product.productname_variantid != blank %}
+  {% assign productname_variantid = shop.metafields.fp_halfslide_product.productname_variantid %}
+  {% else %}
+  {% assign productname_variantid = "como=29988722049088" %}
+  {% endif %}
 
-{% if shop.metafields.fp_halfslide_product.product_model_description != blank %}
-{% assign product_model_description = shop.metafields.fp_halfslide_product.product_model_description %}
-{% else %}
-{% assign product_model_description = "High premium bio<br />sunglasses" %}
-{% endif %}
+  {% assign result1 = productname_variantid | split: "=" %}
+  {% assign product_name1 = result1[0] | strip %}
+  {% assign product_id1 = result1[1] | strip | plus: 0 %}
 
-<section class="vertical-scrolling {{section_number}}" data-section="two-image">
-  <div class="container-fluid h-100">
-    <div class="row h-100">
-      <div class="col-lg-6 my-auto h-100 section1_imgl" style="background-image: url({{ product_model_image_desktop }});" data-desktop-url="{{product_model_image_desktop}}" data-mobile-url="{{product_model_image_mobile}}">
-        <a href="{{json_product1.url}}" class="testbg">
-          <h5 class="story text-center is-animated mb-4">{{product_model_title}}</h5>
-          <h2 class="overlay_txt is-animated mb-0">{{product_model_description}}</h2>
-        </a>
-      </div>
-      <div class="d-none d-lg-flex col-lg-6 my-auto h-100 section1_imgr text-center">
-        <a href="{{json_product1.url}}"><img src="{{ json_product1.image.src | img_url: '420x' }}" srcset="{{ json_product1.image.src | img_url: '2000x' }} 2000w,
-          {{ json_product1.image.src | img_url: '1800x' }} 1800w,
-          {{ json_product1.image.src | img_url: '1600x' }} 1600w,
-          {{ json_product1.image.src | img_url: '1400x' }} 1400w,
-          {{ json_product1.image.src | img_url: '1200x' }} 1200w,
-          {{ json_product1.image.src | img_url: '1000x' }} 1000w,
-          {{ json_product1.image.src | img_url: '800x' }} 800w,
-          {{ json_product1.image.src | img_url: '600x' }} 600w,
-          {{ json_product1.image.src | img_url: '420x' }} 420w" class="mx-auto lazyload" style="width: 80%; height: auto;"></a>
+  {% for variant in all_products[product_name1].variants %}
+    {% if variant != blank %}
+      {% if variant.id == product_id1 %} 
+        {% assign json_product1 = variant %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% if shop.metafields.fp_halfslide_product.product_model_title != blank %}
+  {% assign product_model_title = shop.metafields.fp_halfslide_product.product_model_title %}
+  {% else %}
+  {% assign product_model_title = "PRODUCT TITLE" %}
+  {% endif %}
+
+  {% if shop.metafields.fp_halfslide_product.product_model_description != blank %}
+  {% assign product_model_description = shop.metafields.fp_halfslide_product.product_model_description %}
+  {% else %}
+  {% assign product_model_description = "Product Description" %}
+  {% endif %}
+
+  <section class="vertical-scrolling {{section_number}}" data-section="two-image">
+    <div class="container-fluid h-100">
+      <div class="row h-100">
+        <div class="col-lg-6 my-auto h-100 section1_imgl" style="background-image: url({{ product_model_image_desktop }});" data-desktop-url="{{product_model_image_desktop}}" data-mobile-url="{{product_model_image_mobile}}">
+          <a href="{{json_product1.url}}" class="testbg">
+            <h5 class="story text-center is-animated mb-4">{{product_model_title}}</h5>
+            <h2 class="overlay_txt is-animated mb-0">{{product_model_description}}</h2>
+          </a>
+        </div>
+        <div class="d-none d-lg-flex col-lg-6 my-auto h-100 section1_imgr text-center">
+          <a href="{{json_product1.url}}"><img src="{{ json_product1.image.src | img_url: '420x' }}" srcset="{{ json_product1.image.src | img_url: '2000x' }} 2000w,
+            {{ json_product1.image.src | img_url: '1800x' }} 1800w,
+            {{ json_product1.image.src | img_url: '1600x' }} 1600w,
+            {{ json_product1.image.src | img_url: '1400x' }} 1400w,
+            {{ json_product1.image.src | img_url: '1200x' }} 1200w,
+            {{ json_product1.image.src | img_url: '1000x' }} 1000w,
+            {{ json_product1.image.src | img_url: '800x' }} 800w,
+            {{ json_product1.image.src | img_url: '600x' }} 600w,
+            {{ json_product1.image.src | img_url: '420x' }} 420w" class="mx-auto lazyload" style="width: 80%; height: auto;"></a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+{% endif %}

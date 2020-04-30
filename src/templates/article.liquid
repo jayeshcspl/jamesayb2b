@@ -56,11 +56,6 @@
 {% assign vimeo_video_id = 253989945 %}
 {% endif %}
 
-{% if article.metafields.cf_story.display_video != blank %}
-{% assign display_video = article.metafields.cf_story.display_video | downcase %}
-{% else %}
-{% assign display_video = "" %}
-{% endif %}
 <style>
 @media screen and (min-width: 992px) {
   .vimeo-wrapper {
@@ -80,7 +75,7 @@
 }
 </style>
 <div id="fullpage1">
-  {% if display_video != "yes" %}
+  {% if article.metafields.cf_story.display_video != 1 %}
     <section class="vertical-scrolling stories_selected" style="background-image: url('{{desktop_img}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
       <div class="container-fluid h-100">
         <div class="row h-100">
@@ -118,7 +113,7 @@
           <h2>{{is_wearing_title}}</h2>
         </div>
       </div>
-      <div class="row h-100 mt-0 mt-lg-5 no-gutters">
+      <div class="row h-100 mt-3 mt-lg-5 no-gutters">
         <div class="col-lg-6 products section_center1">
           <div class="row no-gutters">
             <div class="col-lg-12" style="text-align: left;">

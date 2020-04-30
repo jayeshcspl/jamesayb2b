@@ -6,48 +6,105 @@
   {% endif %}
   {% if template_number == 1 %}
     {% include 'section-first', section_number:"section-first" %}
+    {% include 'section-fifth', section_number:"section-fifth" %}
     {% include 'section-second', section_number:"section-second" %}
     {% include 'section-third', section_number:"section-third" %}
-    {% include 'section-fourth', section_number:"section-fourth" %}    
+    {% include 'section-fourth', section_number:"section-fourth" %}
+    {% include 'section-sixth', section_number:"section-sixth" %}
   {% elsif template_number == 2 %}
     {% include 'section-fourth', section_number:"section-fourth" %}
+    {% include 'section-fifth', section_number:"section-fifth" %}
     {% include 'section-first', section_number:"section-first" %}
     {% include 'section-third', section_number:"section-second" %}
     {% include 'section-second', section_number:"section-third" %}
+    {% include 'section-sixth', section_number:"section-sixth" %}
   {% elsif template_number == 3 %}
     {% include 'section-second', section_number:"section-first" %}
+    {% include 'section-fifth', section_number:"section-fifth" %}
     {% include 'section-fourth', section_number:"section-fourth" %}
     {% include 'section-first', section_number:"section-second" %}
     {% include 'section-third', section_number:"section-third" %}
+    {% include 'section-sixth', section_number:"section-sixth" %}
   {% elsif template_number == 4 %}
     {% include 'section-second', section_number:"section-first" %}
+    {% include 'section-fifth', section_number:"section-fifth" %}
     {% include 'section-third', section_number:"section-second" %}
     {% include 'section-fourth', section_number:"section-fourth" %}
     {% include 'section-first', section_number:"section-third" %}
+    {% include 'section-sixth', section_number:"section-sixth" %}
   {% elsif template_number == 5 %}
     {% include 'section-fourth', section_number:"section-fourth" %}
+    {% include 'section-fifth', section_number:"section-fifth" %}
     {% include 'section-third', section_number:"section-first" %}
     {% include 'section-first', section_number:"section-second" %}
     {% include 'section-second', section_number:"section-third" %}
+    {% include 'section-sixth', section_number:"section-sixth" %}
   {% elsif template_number == 6 %}
     {% include 'section-third', section_number:"section-third" %}
+    {% include 'section-fifth', section_number:"section-fifth" %}
     {% include 'section-second', section_number:"section-second" %}
     {% include 'section-first', section_number:"section-first" %}
     {% include 'section-fourth', section_number:"section-fourth" %}
+    {% include 'section-sixth', section_number:"section-sixth" %}
   {% endif %}
 </div>
-{% if shop.metafields.fp_fullslide_video.vimeo_video_id != blank %}
-{% assign vimeo_video_id = shop.metafields.fp_fullslide_video.vimeo_video_id %}
-{% else %}
-{% assign vimeo_video_id = 253989945 %}
+
+{% if shop.metafields.fp_fullslide_video.disable_video_slide != 1 %}
+  {% if shop.metafields.fp_fullslide_video.vimeo_video_id != blank %}
+  {% assign vimeo_video = shop.metafields.fp_fullslide_video.vimeo_video_id %}
+  {% else %}
+  {% assign vimeo_video = 253989945 %}
+  {% endif %}
+  <script type="text/javascript">
+    if ($('#vimeo-video').length > 0) { 
+      var options = {
+          id: {{vimeo_video}},
+          autoplay: true,
+          loop: true,
+          responsive: true,
+          background: true,
+      };
+      var chasing = new Vimeo.Player('vimeo-video', options);
+    }
+  </script>
 {% endif %}
-<script type="text/javascript">
-  var options = {
-      id: {{vimeo_video_id}},
-      autoplay: true,
-      loop: true,
-      responsive: true,
-      background: true,
-  };
-  var chasing = new Vimeo.Player('vimeo-video', options);
-</script>
+
+{% if shop.metafields.fp_2_column.new_two_column_template.disable != 1 and  shop.metafields.fp_2_column.new_two_column_template.display_video == 1%}
+  {% if shop.metafields.fp_2_column.new_two_column_template.vimeo_video_id != blank %}
+  {% assign vimeo_video_id = shop.metafields.fp_2_column.new_two_column_template.vimeo_video_id %}
+  {% else %}
+  {% assign vimeo_video_id = 253989945 %}
+  {% endif %}
+  <script type="text/javascript">
+    if ($('#vimeo_video_id').length > 0) {
+      var options_fifth = {
+          id: {{vimeo_video_id}},
+          autoplay: true,
+          loop: true,
+          responsive: true,
+          background: true,
+      };
+      var chasing_fifth = new Vimeo.Player('vimeo_video_id', options_fifth);
+    }  
+  </script>
+{% endif %}
+
+{% if shop.metafields.fp_2_column.new_two_column_6th_template.disable != 1 and  shop.metafields.fp_2_column.new_two_column_6th_template.display_video == 1%}
+  {% if shop.metafields.fp_2_column.new_two_column_6th_template.vimeo_video_id != blank %}
+  {% assign vimeo_video_id_sixth = shop.metafields.fp_2_column.new_two_column_6th_template.vimeo_video_id %}
+  {% else %}
+  {% assign vimeo_video_id_sixth = 253989945 %}
+  {% endif %}
+  <script type="text/javascript">
+    if ($('#vimeo_video_id_sixth').length > 0) {
+      var options_sixth = {
+          id: {{vimeo_video_id_sixth}},
+          autoplay: true,
+          loop: true,
+          responsive: true,
+          background: true,
+      };
+      var chasing_sixth = new Vimeo.Player('vimeo_video_id_sixth', options_sixth);
+    }  
+  </script>
+{% endif %}

@@ -20,8 +20,22 @@ $(document).ready(function($) {
     $('.content_area > div').css({"padding-top":paddingTop+"px"});
   }
   if (deviceWidth < 992 ){
-    var marginTop = ($('.testbg').height()/2) + 30;
-    $('.testbg').css({"margin-top":"-"+marginTop+"px"});
+    //var marginTop = ($('.testbg').height()/2) + 30;
+    //$('.testbg').css({"margin-top":"-"+marginTop+"px"});
+
+    $('.testbg').each(function (index, value){
+      var marginTop = $(this).height()/2;
+      $(this).css({"margin-top":"-"+marginTop+"px"});
+      //console.log(index + " text height = " + $(this).height());
+      //console.log(index + " marginTop = " + marginTop);
+    });
+
+    $('.text').each(function (index, value){
+      var textMarginTop = $(this).height()/2;
+      $(this).css({"margin-top":"-"+textMarginTop+"px"});
+      //console.log(index + " text height = " + $(this).height());
+      //console.log(index + " textMarginTop = " + textMarginTop);
+    });
   }
   /*if (deviceWidth > 991 ){
     var buyNowBtnTop = deviceHeight - $('.buy-now-btn').height();

@@ -683,6 +683,7 @@ a.search {
 .section1_imgl {
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-position: center center;
 	min-height: calc(100vh - 0px);
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -728,7 +729,6 @@ a.search {
 }
 
 .section2_imgl {
-	// background-color: rgba(0, 0, 0, 0.6);
 	min-height: calc(100vh - 0px);
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -758,6 +758,9 @@ a.search {
 	/*letter-spacing: 1.5px;*/
 	text-align: center;
 }
+.section-fourth .overlay_txt {
+	max-width: 495px;
+}
 .story {
 	color: #FFFFFF;
 	font-family: 'MonumentSemiMono';
@@ -766,7 +769,6 @@ a.search {
 	line-height: 14px;
 	margin-bottom: 30px;
 }
-
 .section_story {
 	min-height: calc(100vh - 0px);
 	display: -webkit-box;
@@ -1345,7 +1347,10 @@ a.menu_middle.blk i {
   overflow: hidden;
 }
 
-.vimeo-wrapper #vimeo-video {
+.vimeo-wrapper #vimeo-video,
+.vimeo-wrapper #vimeo_video_id,
+.vimeo-wrapper #vimeo_video_id_sixth,
+.vimeo-wrapper #story_vimeo_video_id {
   width: 100%;
   height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
   min-height: 100vh;
@@ -1659,7 +1664,7 @@ a.menu_middle.blk i {
 	width: 100%;
 	opacity: 1;
 	transition: .5s ease;
-	background-color: rgba(2, 2, 2, 0.4);
+	background-color: rgba(2, 2, 2, 0.2);
 	z-index: 199;
 }
 .custom_overlay .text {
