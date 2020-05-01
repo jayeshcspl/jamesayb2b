@@ -54,6 +54,9 @@ $(document).ready(function($) {
     if($(this).attr('data-section') == "two-image") {
       var element_bgimage = $(this).find('.section1_imgl');
       var mobile_url = $(this).find('.section1_imgl').attr('data-mobile-url');
+    } else if($(this).attr('data-section') == "video") {
+      var element_bgimage = $(this).find('.vimeo-wrapper');
+      var mobile_url = element_bgimage.attr('data-mobile-url');
     } else {
       var element_bgimage = $(this);
       var mobile_url = $(this).attr('data-mobile-url');

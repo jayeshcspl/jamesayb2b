@@ -108,3 +108,33 @@
     }  
   </script>
 {% endif %}
+
+{% if shop.metafields.fp_fullslide_story.disable_story_slide != 1 %}
+  {% if shop.metafields.fp_fullslide_story.story_url != blank %}
+  {% assign story_url = shop.metafields.fp_fullslide_story.story_url %}
+  {% else %}
+  {% assign story_url = "stories/following-dreams" %}
+  {% endif %}
+
+  {% assign article = articles[story_url] %}
+
+  {% if article.metafields.cf_story.display_video == 1 %}
+    {% if article.metafields.cf_story.vimeo_video_id != blank %}
+    {% assign story_vimeo_video_id = article.metafields.cf_story.vimeo_video_id %}
+    {% else %}
+    {% assign story_vimeo_video_id = 253989945 %}
+    {% endif %}
+    <script type="text/javascript">
+      if ($('#story_vimeo_video_id').length > 0) {
+        var options_story = {
+            id: {{story_vimeo_video_id}},
+            autoplay: true,
+            loop: true,
+            responsive: true,
+            background: true,
+        };
+        var chasing_story = new Vimeo.Player('story_vimeo_video_id', options_story);
+      }  
+    </script>
+  {% endif %}
+{% endif %}

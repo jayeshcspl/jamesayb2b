@@ -12,27 +12,16 @@
   {% else %}
   {% assign mobile_img = desktop_img %}
   {% endif %}
-  <style>
-    @media screen and (min-width: 992px) {
-      .vimeo-wrapper {
-        background-image: url({{ desktop_img }});
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-    }
-    @media screen and (max-width: 991px) {
-      .vimeo-wrapper {
-        background-image: url({{ mobile_img }});
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;        
-      }
-    }
-    </style>
-  <section class="vertical-scrolling home_section3 {{section_number}}" data-section="one-image" style="background-image: url('{{desktop_img}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
+
+  {% if article.metafields.cf_story.display_video == 1 %}
+  {% assign slide_type = "video" %}
+  {% else %}
+  {% assign slide_type = "one-image" %}
+  {% endif %}
+
+  <section class="vertical-scrolling home_section3 {{section_number}}" data-section="{{slide_type}}" style="background-image: url('{{desktop_img}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
     {% if article.metafields.cf_story.display_video == 1 %}
-      <div class="vimeo-wrapper">
+      <div class="vimeo-wrapper" style="background-image: url('{{desktop_img}}'); background-position: center center;" data-desktop-url="{{desktop_img}}" data-mobile-url="{{mobile_img}}">
         <div id="story_vimeo_video_id"></div>
       </div>
     {% endif %}
@@ -48,24 +37,4 @@
       </div>
     </div>
   </section>
-{% endif %}
-
-{% if shop.metafields.fp_fullslide_story.disable_story_slide != 1 and article.metafields.cf_story.display_video == 1 %}
-  {% if article.metafields.cf_story.vimeo_video_id != blank %}
-  {% assign story_vimeo_video_id = article.metafields.cf_story.vimeo_video_id %}
-  {% else %}
-  {% assign story_vimeo_video_id = 253989945 %}
-  {% endif %}
-  <script type="text/javascript">
-    if ($('#story_vimeo_video_id').length > 0) {
-      var options_story = {
-          id: {{story_vimeo_video_id}},
-          autoplay: true,
-          loop: true,
-          responsive: true,
-          background: true,
-      };
-      var chasing_story = new Vimeo.Player('story_vimeo_video_id', options_story);
-    }  
-  </script>
 {% endif %}
