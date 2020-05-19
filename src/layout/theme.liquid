@@ -45,6 +45,7 @@
   {% if template == 'index' or template == 'blog' %}
   <link defer rel="stylesheet" type="text/css" href="{{ 'jquery.fullPage.css' | asset_url }}">
   {% endif %}
+  <link defer rel="stylesheet" type="text/css" href="{{ 'jquery.bxslider.min.css' | asset_url }}">
   <link defer rel="stylesheet" type="text/css" href="{{ 'animate.min.css' | asset_url }}">
   <link defer rel="stylesheet" type="text/css" href="{{ 'aos.css' | asset_url }}">
   <link defer rel="stylesheet" type="text/css" href="{{ 'style.scss' | asset_url }}">
@@ -130,6 +131,7 @@
   {% if template == 'index' or template == 'blog' %}
   <script defer src="{{ 'jquery.fullPage.min.js' | asset_url }}"></script>
   {% endif %}
+  <script defer src="{{ 'jquery.bxslider.min.js' | asset_url }}"></script>
   <script defer src="{{ 'highlight.min.js' | asset_url }}"></script>
   <script defer src="{{ 'aos.js' | asset_url }}"></script>
   {% if template == 'index' or template == 'article' %}
@@ -183,6 +185,14 @@
   {% include 'search-autocomplete' %}
   {% include 'ajaxify-cart' %}
   <script type="text/javascript">
+  var mySlider;	
+  jQuery(document).ready(function(){	
+    mySlider =  jQuery('.product_slider').bxSlider({	
+      slideSelector: "div.slide-visible",	
+      pager : false,	
+      //infiniteLoop: false	
+    });	
+  });
     jQuery(function() {
       jQuery('.swatch :radio').change(function() {
         var optionIndex = jQuery(this).closest('.swatch').attr('data-option-index');
