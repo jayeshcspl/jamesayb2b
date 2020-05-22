@@ -29,7 +29,9 @@
                     <div class="col-lg-6 products index-{{counter}}">
                       <div class="row no-gutters">
                         <div class="col-lg-9">
+
                           <a href="{{ variant.url | within: collection }}">
+                            <div class="reveal">
                             <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
                             {{ variant | img_url: '1800x' }} 1800w,
                             {{ variant | img_url: '1600x' }} 1600w,
@@ -39,6 +41,13 @@
                             {{ variant | img_url: '800x' }} 800w,
                             {{ variant | img_url: '600x' }} 600w,
                             {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                            {% for image in product.images %}
+                            {% assign model_image = variant.image.alt | append: " - Model" %}
+                              {% if model_image == image.alt %}
+                                <img class="hidden" src="{{image | img_url: 'master'}}" alt="{{ image.alt | escape }}" />
+                              {% endif %}
+                            {% endfor %}
+                            </div>
                           </a>
                           <ul class="d-flex justify-content-between mt-4">
                             <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
@@ -52,6 +61,7 @@
                       <div class="row no-gutters">
                         <div class="col-lg-12 mt-50">
                           <a href="{{ variant.url | within: collection }}">
+                            <div class="reveal">
                               <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
                               {{ variant | img_url: '1800x' }} 1800w,
                               {{ variant | img_url: '1600x' }} 1600w,
@@ -61,6 +71,13 @@
                               {{ variant | img_url: '800x' }} 800w,
                               {{ variant | img_url: '600x' }} 600w,
                               {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                              {% for image in product.images %}
+                                {% assign model_image = variant.image.alt | append: " - Model" %}
+                                {% if model_image == image.alt %}
+                                  <img class="hidden" src="{{image | img_url: 'master'}}" alt="{{ image.alt | escape }}" />
+                                {% endif %}
+                              {% endfor %}
+                            </div>
                           </a>
                           <ul class="d-flex justify-content-between mt-4">
                             <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
@@ -100,6 +117,7 @@
                     <div class="row no-gutters">
                       <div class="col-lg-12">
                         <a href="{{ variant.url | within: collection }}">
+                          <div class="reveal">
                           <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
                           {{ variant | img_url: '1800x' }} 1800w,
                           {{ variant | img_url: '1600x' }} 1600w,
@@ -109,6 +127,13 @@
                           {{ variant | img_url: '800x' }} 800w,
                           {{ variant | img_url: '600x' }} 600w,
                           {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                          {% for image in product.images %}
+                            {% assign model_image = variant.image.alt | append: " - Model" %}
+                            {% if model_image == image.alt %}
+                              <img class="hidden" src="{{image | img_url: 'master'}}" alt="{{ image.alt | escape }}" />
+                            {% endif %}
+                          {% endfor %}
+                          </div>
                         </a>
                         <ul class="d-flex justify-content-between mt-4">
                           <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
@@ -124,6 +149,7 @@
                       <div class="row no-gutters">
                         <div class="col-lg-12">
                           <a href="{{ variant.url | within: collection }}">
+                            <div class="reveal">
                             <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
                             {{ variant | img_url: '1800x' }} 1800w,
                             {{ variant | img_url: '1600x' }} 1600w,
@@ -133,6 +159,13 @@
                             {{ variant | img_url: '800x' }} 800w,
                             {{ variant | img_url: '600x' }} 600w,
                             {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                            {% for image in product.images %}
+                              {% assign model_image = variant.image.alt | append: " - Model" %}
+                              {% if model_image == image.alt %}
+                                <img class="hidden" src="{{image | img_url: 'master'}}" alt="{{ image.alt | escape }}" />
+                              {% endif %}
+                            {% endfor %}
+                            </div>
                           </a>
                           <ul class="d-flex justify-content-between mt-4">
                             <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
@@ -146,6 +179,7 @@
                       <div class="row no-gutters">
                         <div class="col-lg-8 offset-lg-4 mt-50">
                           <a href="{{ variant.url | within: collection }}">
+                            <div class="reveal">
                               <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
                               {{ variant | img_url: '1800x' }} 1800w,
                               {{ variant | img_url: '1600x' }} 1600w,
@@ -155,6 +189,13 @@
                               {{ variant | img_url: '800x' }} 800w,
                               {{ variant | img_url: '600x' }} 600w,
                               {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                              {% for image in product.images %}
+                                {% assign model_image = variant.image.alt | append: " - Model" %}
+                                {% if model_image == image.alt %}
+                                  <img class="hidden" src="{{image | img_url: 'master'}}" alt="{{ image.alt | escape }}" />
+                                {% endif %}
+                              {% endfor %}
+                            </div>
                           </a>
                           <ul class="d-flex justify-content-between mt-4">
                             <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
@@ -193,6 +234,7 @@
                     <div class="row no-gutters">
                       <div class="col-lg-8 offset-lg-4">
                         <a href="{{ variant.url | within: collection }}">
+                          <div class="reveal">
                             <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
                             {{ variant | img_url: '1800x' }} 1800w,
                             {{ variant | img_url: '1600x' }} 1600w,
@@ -202,6 +244,13 @@
                             {{ variant | img_url: '800x' }} 800w,
                             {{ variant | img_url: '600x' }} 600w,
                             {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                            {% for image in product.images %}
+                              {% assign model_image = variant.image.alt | append: " - Model" %}
+                              {% if model_image == image.alt %}
+                                <img class="hidden" src="{{image | img_url: 'master'}}" alt="{{ image.alt | escape }}" />
+                              {% endif %}
+                            {% endfor %}
+                          </div>
                         </a>
                         <ul class="d-flex justify-content-between mt-4">
                           <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
@@ -218,6 +267,7 @@
                       <div class="row no-gutters">
                         <div class="col-lg-12">
                           <a href="{{ variant.url | within: collection }}">
+                            <div class="reveal">
                             <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
                             {{ variant | img_url: '1800x' }} 1800w,
                             {{ variant | img_url: '1600x' }} 1600w,
@@ -227,6 +277,13 @@
                             {{ variant | img_url: '800x' }} 800w,
                             {{ variant | img_url: '600x' }} 600w,
                             {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                            {% for image in product.images %}
+                              {% assign model_image = variant.image.alt | append: " - Model" %}
+                              {% if model_image == image.alt %}
+                                <img class="hidden" src="{{image | img_url: 'master'}}" alt="{{ image.alt | escape }}" />
+                              {% endif %}
+                            {% endfor %}
+                            </div>
                           </a>
                           <ul class="d-flex justify-content-between mt-4">
                             <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
@@ -240,6 +297,7 @@
                       <div class="row no-gutters">
                         <div class="col-lg-9 offset-lg-3 mt-50">
                           <a href="{{ variant.url | within: collection }}">
+                            <div class="reveal">
                               <img src="{{ variant | img_url: 'master' }}" data-sizes="auto" data-srcset="{{ variant | img_url: '2000x' }} 2000w,
                               {{ variant | img_url: '1800x' }} 1800w,
                               {{ variant | img_url: '1600x' }} 1600w,
@@ -249,6 +307,13 @@
                               {{ variant | img_url: '800x' }} 800w,
                               {{ variant | img_url: '600x' }} 600w,
                               {{ variant | img_url: '420x' }} 420w" alt="{{ variant.image.alt | escape }}" class="img-fluid w-100 lazyload">
+                              {% for image in product.images %}
+                                {% assign model_image = variant.image.alt | append: " - Model" %}
+                                {% if model_image == image.alt %}
+                                  <img class="hidden" src="{{image | img_url: 'master'}}" alt="{{ image.alt | escape }}" />
+                                {% endif %}
+                              {% endfor %}
+                            </div>
                           </a>
                           <ul class="d-flex justify-content-between mt-4">
                             <li class="text-left"><a href="{{ variant.url | within: collection }}" class="product_link">{{product.title}} - {{ variant.title }}</a> {{ variant.price | money }}</li>
