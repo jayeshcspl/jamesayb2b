@@ -18,7 +18,7 @@
   transition: opacity 0.3s ease-in-out;  
 }
 .reveal:hover .hidden { 
-  z-index: 100000;
+  z-index: 1000;
   opacity: 1;    
 }
 .reveal .caption {
