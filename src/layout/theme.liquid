@@ -39,9 +39,9 @@
     {{ content_for_header }}
   {% endif %}
   <link defer rel="stylesheet" type="text/css" href="{{ 'fontawesome_v5.8.2_all.css' | asset_url }}">
-  {% if template == 'product' %}
+  <!-- {% if template == 'product' %}
   <link defer rel="stylesheet" type="text/css" href="{{ 'jquery.fancybox.min.css' | asset_url }}">
-  {% endif %}
+  {% endif %} -->
   {% if template == 'index' or template == 'blog' %}
   <link defer rel="stylesheet" type="text/css" href="{{ 'jquery.fullPage.css' | asset_url }}">
   {% endif %}
@@ -126,9 +126,9 @@
     }
   </style>
   <script src="{{ 'jquery-3.4.1.min.js' | asset_url }}"></script>
-  {% if template == 'product' %}
+  <!-- {% if template == 'product' %}
   <script defer src="{{ 'jquery.fancybox.js' | asset_url }}"></script>
-  {% endif %}
+  {% endif %} -->
   {% if template == 'index' or template == 'blog' %}
   <script defer src="{{ 'jquery.fullPage.min.js' | asset_url }}"></script>
   {% endif %}
@@ -187,13 +187,7 @@
   {% include 'ajaxify-cart' %}
   <script type="text/javascript">
   var mySlider;	
-  jQuery(document).ready(function(){	
-    mySlider =  jQuery('.product_slider').bxSlider({	
-      slideSelector: "div.slide-visible",	
-      pager : false,	
-      //infiniteLoop: false	
-    });	
-  });
+
     jQuery(function() {
       jQuery('.swatch :radio').change(function() {
         var optionIndex = jQuery(this).closest('.swatch').attr('data-option-index');
@@ -288,6 +282,16 @@
           });
         }
       }
+    });
+    jQuery(document).ready(function(){	
+      mySlider =  jQuery('.product_slider').bxSlider({
+        slideSelector: "div.slide-visible",	
+        pager : false,
+        responsive: true,
+        mode: 'fade',
+        //auto: true,
+        //infiniteLoop: false	
+      });	
     });
   </script>  
 </body>
