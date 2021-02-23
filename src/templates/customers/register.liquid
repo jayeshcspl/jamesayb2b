@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container-fluid">
 
-  <div class="row">
+  <div class="row hide">
     {% include 'breadcrumbs' %}
   </div>
 
-  <div class="row">
-    <div class="col-lg-8 mx-auto mb-3">
-      <h1>{{ 'customer.register.title' | t }}</h1>
+  <div class="row mt100 align-items-center">
+    <div class="col-md-6 mx-auto mb-3  left_area">
+      
 
       {% form 'create_customer' %}
 
       {{ form.errors | default_errors }}
-
+	<h1 class="mb-5">{{ 'customer.register.title' | t }}</h1>
       <div class="form-group">
         <label for="FirstName">
           {{ 'customer.register.first_name' | t }}
@@ -66,10 +66,12 @@
       </div>
 
       <input type="submit" value="{{ 'customer.register.submit' | t }}"
-      class="btn btn-primary">
+      class="btn btn-primary mt-3">
 
     </div>
-
+    <div class="col-md-6 mx-auto mb-3 right_area">
+      <img class="max380 mx-auto d-block" src="https://cdn.shopify.com/s/files/1/0504/0773/5470/files/james-ay-diego-sunglasses.jpg?v=1612847784" alt="">
+    </div>
     {% endform %}
   </div>
 </div>

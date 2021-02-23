@@ -1,55 +1,23 @@
-<div class="container">
+<style>
+  html, body.template-account {
+    height: 100%;
+  }
+  .template-account #luxy,
+  .template-account #MainContent {
+    height: 100%;
+  }
+</style>
+<div class="container-fluid h-md-100">
 
-  <div class="row">
+  <div class="row hide">
     {% include 'breadcrumbs' %}
   </div>
 
-  <div class="row justify-content-center mb-3">
-    <div class="col-lg-8">
-      <h1 class="text-center">{{ 'customer.account.title' | t }}</h1>
+  <div class="row h-md-100 justify-content-center align-self-center">
+    <div class="col-md-6 h-md-100 mx-auto mb-5  left_area align-self-center">
+      <h1 class="mb-5">{{ 'customer.account.title' | t }}</h1>
 
-      {% capture user_email %}
-        <a href="/account">{{ customer.email }}</a>
-      {% endcapture %}
-
-      <div class="text-center mb-3">
-        {{ 'layout.customer.logged_in_as_html' | t: first_name: user_email }} (<a href="/account/logout">{{ 'layout.customer.log_out' | t }}</a>)
-      </div>
-
-      <h2>{{ 'customer.orders.title' | t }}</h2>
-
-      <div class="mb-3 order-history">
-
-        <table class="orders table table-bordered">
-          <thead>
-            <tr>
-              <th class="p-2 text-center" scope="col">{{ 'customer.orders.order_number' | t }}</th>
-              <th class="p-2 text-center" scope="col">{{ 'customer.orders.payment_status' | t }}</th>
-              <th class="p-2 text-center" scope="col">{{ 'customer.orders.fulfillment_status' | t }}</th>
-              <th class="p-2 text-center" scope="col">{{ 'customer.orders.total' | t }}</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {% if customer.orders.size == 0 %}
-              <tr class="">
-                <td scope="col" colspan="4" class="p-2 text-center">{{ 'customer.orders.none' | t }}</td>
-              </tr>
-            {% endif %}
-            {% for order in customer.orders %}
-              <tr class="{% include 'for-looper' %} {% if order.cancelled %}cancelled_order{% endif %}">
-                <td scope="col" class="p-2 text-center order-number">{{ order.name | link_to: order.customer_url }} <span class="date">- {{ order.created_at | date: '%b %d, %Y' }}</span></td>
-                <td scope="col" class="p-2 text-center payment-status {{ order.financial_status }}">{{ order.financial_status_label | capitalize }}</td>
-                <td scope="col" class="p-2 text-center fulfillment-status {{ order.fulfillment_status }}">{{ order.fulfillment_status_label | capitalize }}</td>
-                <td scope="col" class="p-2 text-center total"><span style="font-size: 1em;" class="money">{{ order.total_price | money }}</span></td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-
-      </div>
-
-      <h2>{{ 'layout.customer.account' | t }}</h2>
+      <!-- <h2>{{ 'layout.customer.account' | t }}</h2> -->
 
       <div class="account-info">
 
@@ -85,7 +53,53 @@
         {% endif %}
 
       </div>
+      
+      {% capture user_email %}
+        <a href="/account">{{ customer.email }}</a>
+      {% endcapture %}
 
+      <div class="mb-3">
+        {{ 'layout.customer.logged_in_as_html' | t: first_name: user_email }}
+      </div>
+      <div class="mb-3">
+        <a style="text-decoration: underline !important;" href="/account/logout">{{ 'layout.customer.log_out' | t }}</a>
+      </div>
+    </div>
+    <div class="col-md-6 h-md-100  mx-auto mb-5 pb-5 right_area bg-grey align-self-center">
+      <div class="wrapper_order-history mx-auto">
+        <h1 class="mb-5">{{ 'customer.orders.title' | t }}</h1>
+
+        <div class="mb-3 order-history">
+
+          <table class="orders table table-bordered1">
+            <thead>
+              <tr>
+                <th class="p-2 text-center" scope="col">{{ 'customer.orders.order_number' | t }}</th>
+                <th class="p-2 text-center" scope="col">{{ 'customer.orders.payment_status' | t }}</th>
+                <th class="p-2 text-center" scope="col">{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th class="p-2 text-center" scope="col">{{ 'customer.orders.total' | t }}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% if customer.orders.size == 0 %}
+                <tr class="">
+                  <td scope="col" colspan="4" class="p-2 text-center">{{ 'customer.orders.none' | t }}</td>
+                </tr>
+              {% endif %}
+              {% for order in customer.orders %}
+                <tr class="{% include 'for-looper' %} {% if order.cancelled %}cancelled_order{% endif %}">
+                  <td scope="col" class="p-2 text-center order-number">{{ order.name | link_to: order.customer_url }} <span class="date">- {{ order.created_at | date: '%b %d, %Y' }}</span></td>
+                  <td scope="col" class="p-2 text-center payment-status {{ order.financial_status }}">{{ order.financial_status_label | capitalize }}</td>
+                  <td scope="col" class="p-2 text-center fulfillment-status {{ order.fulfillment_status }}">{{ order.fulfillment_status_label | capitalize }}</td>
+                  <td scope="col" class="p-2 text-center total"><span style="font-size: 1em;" class="money">{{ order.total_price | money }}</span></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>

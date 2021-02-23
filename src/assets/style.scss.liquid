@@ -24,7 +24,7 @@
 body {
 	font-family: 'MonumentRegular';
 	color: black;
-	font-size: 1rem !important;
+	font-size: 1.2rem !important;
 	line-height: 19px;
   letter-spacing:0.5px;
 }
@@ -2429,6 +2429,25 @@ a.soundest-form-without-image-open {
     width: 180px !important;
     height: 33px !important;
 }
+@media only screen and (min-width: 813px) {
+	#customer_login,
+	.reset_password_form,
+	#create_customer {
+		max-width: 320px;
+	}
+	.left_area {
+		padding-left: 55px;
+	}
+}
+@media only screen and (min-width: 768px) {
+	.template-account .left_area,
+	.template-account .right_area {
+		padding-top: 150px;
+	}
+	.template-account .right_area .wrapper_order-history {
+		max-width: 85%;
+	}
+}
 @media only screen and (max-width: 812px) {
 	.mt-5 .viabill-pricetag-optional-styles{
 			text-align: center;
@@ -2437,10 +2456,26 @@ a.soundest-form-without-image-open {
 			width: 180px;
 			margin-right: -10px;
 	}
+	.left_area {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+@media only screen and (max-width: 767px) {
+	.template-account .left_area {
+		padding-top: 100px;
+	}
+	.template-account .right_area {
+		padding-top: 50px;
+	}
 }
 .max320 {
 	max-width: 320px;
-  	width: 100%;
+	width: 100%;
+}
+.max380 {
+	max-width: 380px;
+	width: 100%;
 }
 .max480 {
 	max-width: 480px;
@@ -2452,10 +2487,15 @@ a.soundest-form-without-image-open {
 #challenge .shopify-challenge__container {
   	max-width: 320px;
   	margin-top: 150px;
-  	width: 100%;
+		width: 100%;
+		margin-left: auto;
+    margin-right: auto;
 }
 .mt150 {
   margin-top: 150px;
+}
+.mt100 {
+  margin-top: 100px;
 }
 .shopify-challenge__button,
 .shopify-challenge__button:hover,
@@ -2470,5 +2510,189 @@ a.soundest-form-without-image-open {
     background-color: #000000;
     border-color: #000000;
     color: #ffffff !important;
-  	border-radius: 0;
+		border-radius: 0;
+		margin-top: 20px;
+}
+
+.template-login .form-control,
+.template-register .form-control {
+	font-size: 1.2rem;
+	padding: 15px .75rem;
+	border-radius: 0;
+}
+.template-login .btn,
+.template-register .btn,
+.template-addresses .btn,
+#challenge .btn {
+	font-size: 1.2rem;
+	font-weight: normal;
+	padding: .375rem 1.75rem;
+}
+.template-login #shopify-section-footer,
+.template-register  #shopify-section-footer,
+.template-account #shopify-section-footer,
+.template-addresses #shopify-section-footer{
+	display: none;
+}
+label[for="CustomerEmail"],
+label[for="CustomerPassword"],
+label[for="FirstName"],
+label[for="LastName"],
+label[for="Email"],
+label[for="CreatePassword"],
+label[for="RecoverEmail"]
+ {
+    display:none;
+}
+.template-login ::-webkit-input-placeholder,
+.template-register ::-webkit-input-placeholder { /* Edge */
+	font-size: 1.2rem;
+}
+
+.template-login :-ms-input-placeholder,
+.template-register :-ms-input-placeholder { /* Internet Explorer */
+	font-size: 1.2rem;
+}
+
+.template-login ::placeholder,
+.template-register :-ms-input-placeholder {
+	font-size: 1.2rem;
+}
+
+.bg-grey {
+	background-color: #dddddd;
+}
+.orders.table {
+	color: #ffffff;
+}
+.orders.table thead th,
+.orders.table tbody td {
+	border: none;
+}
+.orders.table tbody td {
+	background-color: #bbbbbb;
+}
+.orders.table thead th:first-child {
+	background-color: #aaaaaa;
+}
+.orders.table thead th:nth-child(2) {
+	background-color: #999999;
+}
+.orders.table thead th:nth-child(3) {
+	background-color: #888888;
+}
+.orders.table thead th:nth-child(4) {
+	background-color: #666666;
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+	.w-sm-100 {
+	width:100%!important;
+	}
+	.w-sm-75 {
+	width:75%!important;
+	}
+	.w-sm-50 {
+	width:50%!important;
+	}
+	.w-sm-25 {
+	width:25%!important;
+	}
+	.h-sm-100 {
+	height:100%!important;
+	}
+	.h-sm-75 {
+	height:75%!important;
+	}
+	.h-sm-50 {
+	height:50%!important;
+	}
+	.h-sm-25 {
+	height:25%!important;
+	}
+}
+	
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+	.w-md-100 {
+	width:100%!important;
+	}
+	.w-md-75 {
+	width:75%!important;
+	}
+	.w-md-50 {
+	width:50%!important;
+	}
+	.w-md-25 {
+	width:25%!important;
+	}
+	.h-md-100 {
+	height:100%!important;
+	}
+	.h-md-75 {
+	height:75%!important;
+	}
+	.h-md-50 {
+	height:50%!important;
+	}
+	.h-md-25 {
+	height:25%!important;
+	}
+}
+	
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+	.w-lg-100 {
+	width:100%!important;
+	}
+	.w-lg-75 {
+	width:75%!important;
+	}
+	.w-lg-50 {
+	width:50%!important;
+	}
+	.w-lg-25 {
+	width:25%!important;
+	}
+	.h-lg-100 {
+	height:100%!important;
+	}
+	.h-lg-75 {
+	height:75%!important;
+	}
+	.h-lg-50 {
+	height:50%!important;
+	}
+	.h-lg-25 {
+	height:25%!important;
+	}
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+	.w-xl-100 {
+	width:100%!important;
+	}
+	.w-xl-75 {
+	width:75%!important;
+	}
+	.w-xl-50 {
+	width:50%!important;
+	}
+	.w-xl-25 {
+	width:25%!important;
+	}
+	.h-xl-100 {
+	height:100%!important;
+	}
+	.h-xl-75 {
+	height:75%!important;
+	}
+	.h-xl-50 {
+	height:50%!important;
+	}
+	.h-xl-25 {
+	height:25%!important;
+	}
 }

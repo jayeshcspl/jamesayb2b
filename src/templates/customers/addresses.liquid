@@ -1,11 +1,11 @@
 {% paginate customer.addresses by 5 %}
 <div class="container">
 
-  <div class="row">
+  <div class="row hide">
     {% include 'breadcrumbs' %}
   </div>
 
-  <div class="row justify-content-center mb-3">
+  <div class="row mt150 justify-content-center mb-3">
     <div class="col-lg-8">
 
       <h1 class="text-center">{{ 'customer.account.title' | t }}</h1>
@@ -14,11 +14,11 @@
         <a href="/account">{{ customer.email }}</a>
       {% endcapture %}
 
-      <div class="text-center mb-3">
+      <div class="text-center mb-5">
         {{ 'layout.customer.logged_in_as_html' | t: first_name: user_email }} (<a href="/account/logout">{{ 'layout.customer.log_out' | t }}</a>)
       </div>
 
-      <h2>{{ 'customer.addresses.title' | t }}</h2>
+      <h1 class="mt-3">{{ 'customer.addresses.title' | t }}</h1>
 
       <div class="row">
         {% for address in customer.addresses %}
